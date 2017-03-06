@@ -1,0 +1,719 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="android vr," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="Welcome to VR at Google 进入Google VR)主页，发现官方给我们提供了两套解决观看VR视频的方式： 
+
+Daydream 
+Cardboard 
+
+给我们提供了三个平台的API，分别是：Unity 3D 、Android、IOS；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一、初识GVR ---- Android VR视频/Google VR for Android /VR Pano/VR Video">
+<meta property="og:url" content="http://yoursite.com/2016/11/25/GVR/index.html">
+<meta property="og:site_name" content="Android心得小记">
+<meta property="og:description" content="Welcome to VR at Google 进入Google VR)主页，发现官方给我们提供了两套解决观看VR视频的方式： 
+
+Daydream 
+Cardboard 
+
+给我们提供了三个平台的API，分别是：Unity 3D 、Android、IOS；">
+<meta property="og:image" content="http://img.blog.csdn.net/20160804143741882">
+<meta property="og:image" content="http://img.blog.csdn.net/20160804143707803">
+<meta property="og:image" content="http://img.blog.csdn.net/20160804143653460">
+<meta property="og:image" content="http://img.blog.csdn.net/20160804143845382">
+<meta property="og:image" content="http://img.blog.csdn.net/20160804155654776">
+<meta property="og:image" content="http://img.blog.csdn.net/20160804160333639">
+<meta property="og:image" content="http://img.blog.csdn.net/20160804155830353">
+<meta property="og:image" content="http://img.blog.csdn.net/20160804155856369">
+<meta property="og:image" content="http://img.blog.csdn.net/20160804155928136">
+<meta property="og:image" content="http://img.blog.csdn.net/20160804160038668">
+<meta property="og:updated_time" content="2016-11-25T03:19:07.757Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一、初识GVR ---- Android VR视频/Google VR for Android /VR Pano/VR Video">
+<meta name="twitter:description" content="Welcome to VR at Google 进入Google VR)主页，发现官方给我们提供了两套解决观看VR视频的方式： 
+
+Daydream 
+Cardboard 
+
+给我们提供了三个平台的API，分别是：Unity 3D 、Android、IOS；">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20160804143741882">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/11/25/GVR/"/>
+
+
+  <title> 一、初识GVR ---- Android VR视频/Google VR for Android /VR Pano/VR Video | Android心得小记 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Android心得小记</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">工作多年 没有做记录 真的白玩 赶紧开始记录自己的点滴</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                一、初识GVR ---- Android VR视频/Google VR for Android /VR Pano/VR Video
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-25T11:01:03+08:00" content="2016-11-25">
+              2016-11-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/android/" itemprop="url" rel="index">
+                    <span itemprop="name">android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Welcome-to-VR-at-Google"><a href="#Welcome-to-VR-at-Google" class="headerlink" title="Welcome to VR at Google"></a>Welcome to VR at Google</h3><p> <img src="http://img.blog.csdn.net/20160804143741882" alt="enter image description here"><br>进入<a href="— [维基百科](https://developers.google.com/vr/">Google VR</a>)主页，发现官方给我们提供了两套解决观看VR视频的方式： </p>
+<ol>
+<li><a href="https://developers.google.com/vr/concepts/overview-daydream" target="_blank" rel="external">Daydream </a></li>
+<li><a href="https://developers.google.com/vr/concepts/overview-cardboard" target="_blank" rel="external">Cardboard </a></li>
+</ol>
+<p>给我们提供了三个平台的API，分别是：Unity 3D 、Android、IOS；</p>
+<a id="more"></a>
+<p>下面看一下官方给这两种方式的描述（英语不好，大概意思应该是我翻译这样的）</p>
+<h3 id="Daydream"><a href="#Daydream" class="headerlink" title="Daydream"></a>Daydream</h3><p><img src="http://img.blog.csdn.net/20160804143707803" alt="enter image description here"></p>
+<blockquote>
+<p>Daydream is a platform for high quality, mobile virtual reality.</p>
+</blockquote>
+<p>白日梦是高质量，移动虚拟现实的平台。在主页上方官方也描述它为：低延迟，身临其境的，互动的移动VR的新平台</p>
+<h3 id="Cardboard"><a href="#Cardboard" class="headerlink" title="Cardboard"></a>Cardboard</h3><p><img src="http://img.blog.csdn.net/20160804143653460" alt="enter image description here"></p>
+<blockquote>
+<p>Cardboard lets you experience virtual reality in a simple, fun, and affordable way.</p>
+</blockquote>
+<p>纸板可以让你在负担得起的情况下，体验一个简单,有趣的虚拟现实。在主页上方官方也描述它为：是世界上最流行的和方便的移动VR平台(可能是经济成本低吧）</p>
+<p><img src="http://img.blog.csdn.net/20160804143845382" alt="enter image description here"></p>
+<blockquote>
+<p>2014年：Google在当年的Google I/O大会上宣布，其将开发纸盒版的HMD（头盔式显示器），年底该设备销量达到了50万。</p>
+<p>2015年：Cardboard被大公司所接受，Google将那些刻上了品牌商标的Cardboard分发给了各大合作商，消费者继续购买主题化的HMD。此时，Cardboard的发展又到了另一个高度：销量达到100万。</p>
+<p>2016年：在今年的Google I/O大会上，Google宣布Cardboard销量已达到500万部，但与此同时，Google推出了Daydream——一个更高级的移动VR HMD，并将于今年11月进入市场。如今市场上已经产生了成千上万的Cardboard应用，Google Play store上的Cardboard app安装量达到50万至100万次。</p>
+</blockquote>
+<p>个人感觉这位小哥说的很对:<br>Daydream is a much higher end VR experience. I have Cardboard, and it’s neat, but in some ways, it feels like a tech demo. （白日梦是一个更高的终端虚拟现实体验。纸板,它很简洁,但在某些方面,感觉技术演示。）</p>
+<p>那么就此看来，应该是这样的情况：Cardboard是Google先推出的简陋版/测试版/经济适用版，现在占用了很大市场；Daydream 是今年新推出的豪华版/完善版/高端玩家版，会冲击Cardboard的市场。也就是说Cardboard短期不会死 ，Daydream还在发展中。</p>
+<p>第一个例子</p>
+<p>先看看Google给我们提供的第一个例子:寻宝</p>
+<p>首先下载Demo，<a href="https://github.com/googlevr/gvr-android-sdk" target="_blank" rel="external">Github</a></p>
+<blockquote>
+<p>也可以直接 git clone <a href="https://github.com/googlevr/gvr-android-sdk.git" target="_blank" rel="external">https://github.com/googlevr/gvr-android-sdk.git</a></p>
+</blockquote>
+<p>项目(gvr-Android-sdk )中有几个主要目录可以留意一下： </p>
+<ol>
+<li>libraries </li>
+<li>ndk-beta </li>
+<li>samples</li>
+</ol>
+<p>samples目录中有四个Demo，分别是： </p>
+<ol>
+<li>SDK-controllerclient（Daydream的控制端） </li>
+<li>SDK-simplepanowidget（全景图） </li>
+<li>SDK-simplevideowidget（全景视频 也就是VR视频） </li>
+<li>SDK-treasurehunt（寻宝项目）这个是我们想要的，其他暂时不要管</li>
+</ol>
+<p>OK,导入AS中先啥都不要管，直接运行一下treasurehunt吧，（突然发现要API&gt;19, 手机刚好19<br>^_^）。</p>
+<p>我们看下效果: </p>
+<ol>
+<li>刚进来（手机不动） </li>
+</ol>
+<p><img src="http://img.blog.csdn.net/20160804155654776" alt="enter image description here"></p>
+<ol>
+<li><p>竖屏<br><img src="http://img.blog.csdn.net/20160804160333639" alt="enter image description here"></p>
+</li>
+<li><p>点击切换</p>
+</li>
+</ol>
+<p><img src="http://img.blog.csdn.net/20160804155830353" alt="enter image description here"></p>
+<ol>
+<li>横屏<br><img src="http://img.blog.csdn.net/20160804155856369" alt="enter image description here"></li>
+</ol>
+<p>当我们屏幕中心对准到立方体时候 </p>
+<p><img src="http://img.blog.csdn.net/20160804155928136" alt="enter image description here"></p>
+<p>我们此时点击立方体，立方体会消失~ 并且震动一下来提示你。<br>看下效果图（慢放 录了十多遍，凑合看吧 抱歉啦）</p>
+<p><img src="http://img.blog.csdn.net/20160804160038668" alt="enter image description here"> </p>
+<p>寻宝(treasurehunt)代码分析</p>
+<blockquote>
+<p>官方寻宝项目介绍 <a href="https://developers.google.com/vr/android/samples/treasure-hunt" target="_blank" rel="external">https://developers.google.com/vr/android/samples/treasure-hunt</a></p>
+</blockquote>
+<p>首先我们看下Manifest里都有什么</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line">&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"</div><div class="line">          package="com.google.vr.sdk.samples.treasurehunt"</div><div class="line">          android:versionCode="1"</div><div class="line">          android:versionName="1"&gt;</div><div class="line"></div><div class="line">    &lt;uses-permission android:name="android.permission.INTERNET" /&gt;</div><div class="line">    &lt;uses-permission android:name="android.permission.NFC" /&gt;</div><div class="line">    &lt;uses-permission android:name="android.permission.VIBRATE" /&gt;</div><div class="line">    &lt;uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /&gt;</div><div class="line"></div><div class="line">    &lt;!-- Make accelerometer and gyroscope hard requirements for good head tracking. --&gt;</div><div class="line">    &lt;uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true"/&gt;</div><div class="line">    &lt;uses-feature android:name="android.hardware.sensor.gyroscope" android:required="true"/&gt;</div><div class="line"></div><div class="line">    &lt;uses-sdk android:minSdkVersion="19" android:targetSdkVersion="22"/&gt;</div><div class="line">    &lt;uses-feature android:glEsVersion="0x00020000" android:required="true" /&gt;</div><div class="line"></div><div class="line">    &lt;!-- VR feature tags. --&gt;</div><div class="line">    &lt;uses-feature android:name="android.software.vr.mode" android:required="false"/&gt;</div><div class="line">    &lt;uses-feature android:name="android.hardware.vr.high_performance" android:required="false"/&gt;</div><div class="line"></div><div class="line">    &lt;application</div><div class="line">            android:allowBackup="true"</div><div class="line">            android:supportsRtl="true"</div><div class="line">            android:icon="@drawable/ic_launcher"</div><div class="line">            android:label="@string/app_name"&gt;</div><div class="line">        &lt;activity</div><div class="line">                android:name=".TreasureHuntActivity"</div><div class="line">                android:label="@string/app_name"</div><div class="line">                android:screenOrientation="landscape"</div><div class="line">                android:configChanges="orientation|keyboardHidden|screenSize" &gt;</div><div class="line">            &lt;intent-filter&gt;</div><div class="line">                &lt;action android:name="android.intent.action.MAIN" /&gt;</div><div class="line">                &lt;category android:name="android.intent.category.LAUNCHER" /&gt;</div><div class="line">                &lt;category android:name="com.google.intent.category.CARDBOARD" /&gt;</div><div class="line">            &lt;/intent-filter&gt;</div><div class="line">        &lt;/activity&gt;</div><div class="line">    &lt;/application&gt;</div><div class="line"></div><div class="line">&lt;/manifest&gt;</div></pre></td></tr></table></figure>
+<p>貌似也没什么特殊说明的，只要了几个权限(INTERNET、NFC、VIBRATE、READ_EXTERNAL_STORAGE)，过滤了一些不支持硬件的设备（accelerometer、gyroscope、glEsVersion等），然后就是intent-filter中添加了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;category android:name=<span class="string">"com.google.intent.category.CARDBOARD"</span> /&gt;</div></pre></td></tr></table></figure>
+<p>下面看treasurehunt的build.gradle的主要内容</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">    <span class="function">compile <span class="title">project</span><span class="params">(<span class="string">':libraries-audio'</span>)</span></span></div><div class="line">    compile <span class="title">project</span><span class="params">(<span class="string">':libraries-base'</span>)</span></div><div class="line">    compile <span class="title">project</span><span class="params">(<span class="string">':libraries-common'</span>)</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>发现依赖了三个库libraries-audio、libraries-base和libraries-common。<br>经过查阅官方文档发现他们的功能：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">audio库 <span class="comment">//三维空间化的声音库。对应com.google.vr.sdk.audio包</span></div><div class="line"></div><div class="line">   base库 <span class="comment">//Google VR核心的 API。对应com.google.vr.sdk.base包</span></div><div class="line"></div><div class="line">   common库 <span class="comment">//通用库。没有找到对应包的介绍，但实际这个库下有三个包分别是</span></div><div class="line">   com.google.protobuf.nano、com.google.vr.*、com.google.vrtoolkit.cardboard。</div></pre></td></tr></table></figure>
+<p>在看看其他的库都是干什么的（库的详细介绍请看官方文档）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">controller库 <span class="comment">//Daydream的控制器所在库。对应com.google.vr.sdk.controller包</span></div><div class="line"></div><div class="line">   panowidget库 <span class="comment">//Google为我们提供 播放VR全景视图的控件 所在库。对应com.google.vr.sdk.widgets.pano包</span></div><div class="line"></div><div class="line">   videowidget库 <span class="comment">//Google为我们提供 播放VR视频的控件 所在库。对应com.google.vr.sdk.widgets.video包</span></div><div class="line"></div><div class="line">   commonwidget库 <span class="comment">//播放VR视频控件和播放VR全景视图的控件的共有库（服务于pano 库和video 的）。对应</span></div><div class="line">   com.google.vr.sdk.widgets.common包</div></pre></td></tr></table></figure>
+<p>接下来看 TreasureHuntActivity(主Activity),由于代码太多我就不贴了。</p>
+<p>我们发现TreasureHuntActivity是继承了GvrActivity（GvrActivity在com.google.vr.sdk.base包下）实现了GvrView.StereoRenderer接口（StereoRenderer在com.google.vr.sdk.base.GvrView下）。</p>
+<blockquote>
+<p>GvrActivity：是使用谷歌VR SDK制作应用程序的起点。GvrActivity是base activity,提供与谷歌轻松集成虚拟现实设备。它暴露事件的VR环境进行交互和处理了许多创造VR渲染一个活动时通常需要的细节。GvrView.StereoRenderer接口：为所有委托立体渲染细节视图渲染。因为他们通常不使用提供的转换参数实现者应该简单地呈现视图。<br>所有的立体渲染和失真校正的细节与渲染抽象和视图内部管理。<br>GvrView：可用于VR渲染。GvrView渲染立体声内容</p>
+</blockquote>
+<p>TreasureHuntActivity的布局文件是common_ui.xml<br>里面只有一个控件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;com.google.vr.sdk.base.GvrView</div><div class="line">        android:id=<span class="string">"@+id/gvr_view"</span></div><div class="line">        android:layout_width=<span class="string">"fill_parent"</span></div><div class="line">        android:layout_height=<span class="string">"fill_parent"</span></div><div class="line">        android:layout_alignParentLeft=<span class="string">"true"</span></div><div class="line">        android:layout_alignParentTop=<span class="string">"true"</span>/&gt;</div></pre></td></tr></table></figure>
+<p>那么Gvr在Activity中应该是如合初始化的呢？请看：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    setContentView(R.layout.common_ui);</div><div class="line">    GvrView gvrView = (GvrView) findViewById(R.id.gvr_view);</div><div class="line">    <span class="comment">// 将 gvrView和GvrView.StereoRenderer 关联</span></div><div class="line">    gvrView.setRenderer(<span class="keyword">this</span>);</div><div class="line">    <span class="comment">// 将 gvrView和当前activity 关联 .</span></div><div class="line">    setGvrView(gvrView);</div><div class="line">    <span class="comment">//初始化其他对象。。。</span></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>官方介绍GvrView.StereoRenderer 有两个主要的方法：<br>onNewFrame()（每次应用程序呈现时间/一个新的帧被绘制到屏幕上）和onDrawEye()（每只眼睛眼睛不同的参数）；</p>
+<p>剩下的Demo中展示的基本上全是OpenGL的东西，在这里就不介绍了（我OpenGL还在学习中，不适合继续讲解），后面几篇会介绍如何制作 全景视频的播放器，全景图片查看器这样的小栗子。并且简单分析一下源码。</p>
+<p>这篇呢，主要是对google vr进行一个简要的了解 </p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/android-vr/" rel="tag">#android vr</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/01/Retrofit简介/" rel="next" title="Retrofit简介">
+                <i class="fa fa-chevron-left"></i> Retrofit简介
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/25/GVR2/" rel="prev" title="二、VR全景图显示器开发 ---- Android VR视频/Google VR for Android /VR Pano/VR Video">
+                二、VR全景图显示器开发 ---- Android VR视频/Google VR for Android /VR Pano/VR Video <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Pandl" />
+          <p class="site-author-name" itemprop="name">Pandl</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Welcome-to-VR-at-Google"><span class="nav-number">1.</span> <span class="nav-text">Welcome to VR at Google</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Daydream"><span class="nav-number">2.</span> <span class="nav-text">Daydream</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cardboard"><span class="nav-number">3.</span> <span class="nav-text">Cardboard</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Pandl</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

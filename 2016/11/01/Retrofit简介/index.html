@@ -1,0 +1,637 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="android retrofit," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="Retrofit 简介
+我们来通俗的理解Retrofit，它是一个可以用于Android和java的网络库，使用它可以简化我们网络操作的工作，提高效率和正确率。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Retrofit简介">
+<meta property="og:url" content="http://yoursite.com/2016/11/01/Retrofit简介/index.html">
+<meta property="og:site_name" content="Android心得小记">
+<meta property="og:description" content="Retrofit 简介
+我们来通俗的理解Retrofit，它是一个可以用于Android和java的网络库，使用它可以简化我们网络操作的工作，提高效率和正确率。">
+<meta property="og:updated_time" content="2016-11-25T03:05:00.208Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Retrofit简介">
+<meta name="twitter:description" content="Retrofit 简介
+我们来通俗的理解Retrofit，它是一个可以用于Android和java的网络库，使用它可以简化我们网络操作的工作，提高效率和正确率。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/11/01/Retrofit简介/"/>
+
+
+  <title> Retrofit简介 | Android心得小记 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Android心得小记</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">工作多年 没有做记录 真的白玩 赶紧开始记录自己的点滴</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Retrofit简介
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-01T14:47:03+08:00" content="2016-11-01">
+              2016-11-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/android/" itemprop="url" rel="index">
+                    <span itemprop="name">android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="Retrofit-简介"><a href="#Retrofit-简介" class="headerlink" title="Retrofit 简介"></a>Retrofit 简介</h4><blockquote>
+<p>我们来通俗的理解Retrofit，它是一个可以用于Android和java的网络库，使用它可以简化我们网络操作的工作，提高效率和正确率。<br><a id="more"></a><br>我们需要牢牢的记住：所有的第三方库能实现的功能，我们使用原生的API只要花时间和精力也能实现，但是可能会出现很多的bug而且会花费较多的时间和精力，而且性能也不一定很好，第三方的库会帮我们封装底层的一些代码，避免我们做重复多余易出错的事情，让我们专注于业务逻辑，所以学习任何一个第三方库都将是简单的，我们不应心生畏惧。<br>那么，同样的道理，Retrofit是Square公司开源的一个高质量高效率的http库，它将我们自己开发的底层的代码和细节都封装了起来。在没有Retrofit，okHttp等库的时候，我们可能要自己去写put，get,post,delete请求。但有了这些库之后对于这些请求我们就只需要一行代码或者是一个注解。<br>所有的网络通信，其核心任务只有一个就是：Client端与Server端进行数据的交互和操作。所以Retrofit就将底层的代码都封装起来只是暴露出了我们业务中的数据模型和操作方法。</p>
+</blockquote>
+<p>这样理解之后，我们学习Retrofit就简单明了很多了。应该从以下这几点开始学习：</p>
+<ul>
+<li><strong>如何传入我们业务需求的URL以及变量参数</strong> </li>
+<li><strong>如何将我们业务中从服务器获取的Jason数据封装为与Retrofit向对应的类或者接口</strong> </li>
+<li><strong>如何使用Retrofit进行get,post,delete,put等操作</strong> </li>
+<li><strong>还有就是如何在我们项目中配置Retrofit</strong> </li>
+</ul>
+<h4 id="Retrofit-特性"><a href="#Retrofit-特性" class="headerlink" title="Retrofit 特性"></a>Retrofit 特性</h4><p>1.将rest API封装为java接口，我们根据业务需求来进行接口的封装，实际开发可能会封装多个不同的java接口以满足业务需求。(注意：这里会用到Retrofit的注解：比如get,post)<br>2.使用Retrofit提供的封装方法将我们的生成我们接口的实现类，这个真的很赞，不用我们自己实现，通过注解Retrofit全部帮我们自动生成好了。<br>3.调用我们实现类对象的接口方法。<br>这样写都太抽象了，看一段代码：</p>
+<h5 id="第一步：将Rest-API转换为java接口"><a href="#第一步：将Rest-API转换为java接口" class="headerlink" title="第一步：将Rest API转换为java接口"></a>第一步：将Rest API转换为java接口</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">GitHubService</span> </span>&#123;</div><div class="line"><span class="meta">@GET</span>(<span class="string">"users/&#123;user&#125;/repos"</span>)</div><div class="line">Call&lt;List&lt;Repo&gt;&gt; listRepos(<span class="meta">@Path</span>(<span class="string">"user"</span>) String user);</div><div class="line"><span class="comment">// you can add some other meathod</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="说明"><a href="#说明" class="headerlink" title="说明:"></a>说明:</h5><ul>
+<li><strong>这里的Rest API是指服务器端的API，一般会暴露get，post方法GitHubService其实是对Rest API的一个映射关系，在实际开发中，我们可以定义：public interface ClientService，里面包含post ,get 方法。</strong> </li>
+<li><strong>接口中的方法使用了Retrofit的注解，Retrofit这个库给了我们很多注解，下一节详细介绍</strong> </li>
+<li><strong>listRepos这个方法表示：一个get请求获取给定URL的Repo集合。</strong></li>
+<li><strong>listRepos传入的参数为我们需要get的url的动态部分。</strong></li>
+<li><strong>这里的Repo为我们自己定义的java bean的类：Repo.class用于封装获取的Jason数据。//注意：此处Retrofit又帮我们省掉了很多工作，只需要我们自己定义业务对应的实体类，而Jason数据的转换和封装则帮我们封装好了只需我们调用。</strong></li>
+</ul>
+<h5 id="第二步-Retrofit会帮我们自动生成接口的实现类的实例，代码如下："><a href="#第二步-Retrofit会帮我们自动生成接口的实现类的实例，代码如下：" class="headerlink" title="第二步:Retrofit会帮我们自动生成接口的实现类的实例，代码如下："></a>第二步:Retrofit会帮我们自动生成接口的实现类的实例，代码如下：</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Retrofit retrofit = <span class="keyword">new</span> Retrofit.Builder()  <span class="comment">//01:获取Retrofit对象</span></div><div class="line">                                .baseUrl(<span class="string">"https://api.github.com/"</span>) <span class="comment">//02采用链式结构绑定Base url</span></div><div class="line">                                .build();<span class="comment">//03执行操作</span></div><div class="line">GitHubService service = retrofit.create(GitHubService.class);<span class="comment">//04获取API接口的实现类的实例对象</span></div></pre></td></tr></table></figure>
+<p>说明:</p>
+<ul>
+<li><strong>短短的两行代码解决了很多问题</strong></li>
+<li><strong>先获取Retrofit对象并绑定基本参数，设置基本配置</strong></li>
+<li><strong>一行代码生成API接口的实例对象</strong></li>
+</ul>
+<h5 id="第三步：调用接口中定义的业务方法-get-post等："><a href="#第三步：调用接口中定义的业务方法-get-post等：" class="headerlink" title="第三步：调用接口中定义的业务方法:get post等："></a>第三步：调用接口中定义的业务方法:get post等：</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Call&lt;List&lt;Repo&gt;&gt; repos = service.listRepos(<span class="string">"octocat"</span>);</div></pre></td></tr></table></figure>
+<p>说明:</p>
+<ul>
+<li><strong>调用接口实现类实例的方法，获取服务器上的数据解析存在List<repo>中。</repo></strong></li>
+</ul>
+<p><strong>小结：Retrofit的使用大体上就分这三步走，接下来就是在开发中去熟悉Retrofit的各种注解了。在下一篇文章我会专门介绍注解的字段</strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/android-retrofit/" rel="tag">#android retrofit</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/01/Retrofit请求参数注解字段说明/" rel="next" title="Retrofit请求参数注解字段说明">
+                <i class="fa fa-chevron-left"></i> Retrofit请求参数注解字段说明
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/25/GVR/" rel="prev" title="一、初识GVR ---- Android VR视频/Google VR for Android /VR Pano/VR Video">
+                一、初识GVR ---- Android VR视频/Google VR for Android /VR Pano/VR Video <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Pandl" />
+          <p class="site-author-name" itemprop="name">Pandl</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Retrofit-简介"><span class="nav-number">1.</span> <span class="nav-text">Retrofit 简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Retrofit-特性"><span class="nav-number">2.</span> <span class="nav-text">Retrofit 特性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#第一步：将Rest-API转换为java接口"><span class="nav-number">2.1.</span> <span class="nav-text">第一步：将Rest API转换为java接口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#说明"><span class="nav-number">2.2.</span> <span class="nav-text">说明:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第二步-Retrofit会帮我们自动生成接口的实现类的实例，代码如下："><span class="nav-number">2.3.</span> <span class="nav-text">第二步:Retrofit会帮我们自动生成接口的实现类的实例，代码如下：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第三步：调用接口中定义的业务方法-get-post等："><span class="nav-number">2.4.</span> <span class="nav-text">第三步：调用接口中定义的业务方法:get post等：</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Pandl</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

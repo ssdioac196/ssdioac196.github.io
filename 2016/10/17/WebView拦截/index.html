@@ -1,0 +1,624 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="android webview," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="android WebView拦截请求详解1、WebView基本用法WebView的基本用法相信大多数[Android][1]开发者都是会使用的，最简单的就是调用个loadUrl方法，但是记得要在清单文件中添加网络权限。我也简单了写了一个加载百度的，如下图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="android webview 拦截请求">
+<meta property="og:url" content="http://yoursite.com/2016/10/17/WebView拦截/index.html">
+<meta property="og:site_name" content="Android心得小记">
+<meta property="og:description" content="android WebView拦截请求详解1、WebView基本用法WebView的基本用法相信大多数[Android][1]开发者都是会使用的，最简单的就是调用个loadUrl方法，但是记得要在清单文件中添加网络权限。我也简单了写了一个加载百度的，如下图">
+<meta property="og:image" content="http://img.blog.csdn.net/20160829100932679">
+<meta property="og:image" content="http://img.blog.csdn.net/20160829102343355">
+<meta property="og:image" content="http://img.blog.csdn.net/20160829110509536">
+<meta property="og:updated_time" content="2016-10-20T01:49:23.875Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="android webview 拦截请求">
+<meta name="twitter:description" content="android WebView拦截请求详解1、WebView基本用法WebView的基本用法相信大多数[Android][1]开发者都是会使用的，最简单的就是调用个loadUrl方法，但是记得要在清单文件中添加网络权限。我也简单了写了一个加载百度的，如下图">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20160829100932679">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/17/WebView拦截/"/>
+
+
+  <title> android webview 拦截请求 | Android心得小记 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Android心得小记</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">工作多年 没有做记录 真的白玩 赶紧开始记录自己的点滴</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                android webview 拦截请求
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-17T14:43:25+08:00" content="2016-10-17">
+              2016-10-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/android/" itemprop="url" rel="index">
+                    <span itemprop="name">android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="android-WebView拦截请求详解"><a href="#android-WebView拦截请求详解" class="headerlink" title="android WebView拦截请求详解"></a>android WebView拦截请求详解</h1><h3 id="1、WebView基本用法"><a href="#1、WebView基本用法" class="headerlink" title="1、WebView基本用法"></a>1、WebView基本用法</h3><p>WebView的基本用法相信大多数<strong>[Android][1]</strong>开发者都是会使用的，最简单的就是调用个loadUrl方法，但是记得要在清单文件中添加网络权限。我也简单了写了一个加载百度的，如下图<br><a id="more"></a><br><img src="http://img.blog.csdn.net/20160829100932679" alt="enter image description here"></p>
+<h3 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mWebview = (WebView) findViewById(R.id.my_webview);</div><div class="line"> mWebview.setWebViewClient(<span class="keyword">new</span> WebViewClient() &#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">shouldOverrideUrlLoading</span><span class="params">(WebView view, WebResourceRequest request)</span> </span>&#123;</div><div class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">mWebview.loadUrl(<span class="string">"https://www.baidu.com/"</span>);</div></pre></td></tr></table></figure>
+<p>这是WebView最简单的使用了。</p>
+<h3 id="2-、WebView拦截请求"><a href="#2-、WebView拦截请求" class="headerlink" title="2 、WebView拦截请求"></a>2 、WebView拦截请求</h3><p>WebView调用loadUrl后，会首先根据传入的URL获取响应，然后再将响应显示到页面上，这就是WebView的原理。那么我们可以在获取响应过程中重新改变请求URL或者直接将响应替换。而具体的替换在WebViewClient的WebResourceResponse shouldInterceptRequest (WebView view,<br>WebResourceRequest request)方法中，该方法用于根据请求去获取响应，如果返回null，那么android会根据请求去获取响应并返回，但是如果你重写了该方法并返回了响应，那么WebView就会使用你的响应数据。其中WebResourceRequet封装了请求，WebResourceResponse封装了响应。</p>
+<p>使用静态响应</p>
+<p>既然知道了原理，那就试一下，先上代码和效果。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"> <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> WebResourceResponse <span class="title">shouldInterceptRequest</span><span class="params">(WebView view, WebResourceRequest request)</span> </span>&#123;</div><div class="line"></div><div class="line">                String response = <span class="string">"&lt;html&gt;\n"</span> +</div><div class="line">                        <span class="string">"&lt;title&gt;千度&lt;/title&gt;\n"</span> +</div><div class="line">                        <span class="string">"&lt;body&gt;\n"</span> +</div><div class="line">                        <span class="string">"&lt;a href=\"www.taobao.com\"&gt;千度&lt;/a&gt;,比百度知道的多10倍\n"</span> +</div><div class="line">                        <span class="string">"&lt;/body&gt;\n"</span> +</div><div class="line">                        <span class="string">"&lt;html&gt;"</span>;</div><div class="line"></div><div class="line">                WebResourceResponse webResourceResponse = <span class="keyword">new</span> WebResourceResponse(<span class="string">"text/html"</span>, <span class="string">"utf-8"</span>, <span class="keyword">new</span> ByteArrayInputStream(response.getBytes()));</div><div class="line"></div><div class="line">                <span class="keyword">return</span> webResourceResponse;</div><div class="line">            &#125;</div><div class="line"></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> WebResourceResponse <span class="title">shouldInterceptRequest</span><span class="params">(WebView view, String url)</span> </span>&#123;</div><div class="line">                String response = <span class="string">"&lt;html&gt;\n"</span> +</div><div class="line">                        <span class="string">"&lt;title&gt;千度&lt;/title&gt;\n"</span> +</div><div class="line">                        <span class="string">"&lt;body&gt;\n"</span> +</div><div class="line">                        <span class="string">"&lt;a href=\"www.taobao.com\"&gt;千度&lt;/a&gt;,比百度知道的多10倍\n"</span> +</div><div class="line">                        <span class="string">"&lt;/body&gt;\n"</span> +</div><div class="line">                        <span class="string">"&lt;html&gt;"</span>;</div><div class="line"></div><div class="line">                WebResourceResponse webResourceResponse = <span class="keyword">new</span> WebResourceResponse(<span class="string">"text/html"</span>, <span class="string">"utf-8"</span>, <span class="keyword">new</span> ByteArrayInputStream(response.getBytes()));</div><div class="line"></div><div class="line">                <span class="keyword">return</span> webResourceResponse;</div><div class="line">            &#125;</div></pre></td></tr></table></figure>
+<p>这段代码直接将响应换成了上面的一段html文字。效果如下： </p>
+<p><img src="http://img.blog.csdn.net/20160829102343355" alt="enter image description here"></p>
+<p>代码中重写了两个shouldInterceptRequest方法，其中一个WebResourceResponse shouldInterceptRequest (WebView view, String url)在API 21过时了。</p>
+<p>响应使用网络资源</p>
+<p>shouldInterceptRequest方法API还有介绍，该方法是在非UI线程中，所以当需要与View系统交互时需要小心。既然是在非UI线程中，那么我们可以放在在其中做网络请求，比如获取www.importnew.com的响应数据，将百度替换为inportnew。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> WebResourceResponse <span class="title">shouldInterceptRequest</span><span class="params">(WebView view, WebResourceRequest request)</span> </span>&#123;</div><div class="line"></div><div class="line"></div><div class="line">                StringBuilder stringBuilder = <span class="keyword">new</span> StringBuilder();</div><div class="line">                BufferedReader bufferedReader = <span class="keyword">null</span>;</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    URL url = <span class="keyword">new</span> URL(<span class="string">"http://www.inportnew.com/"</span>);</div><div class="line">                    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();</div><div class="line">                    httpURLConnection.setConnectTimeout(<span class="number">10</span> * <span class="number">1000</span>);</div><div class="line">                    httpURLConnection.setReadTimeout(<span class="number">40</span> * <span class="number">1000</span>);</div><div class="line">                    bufferedReader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(httpURLConnection.getInputStream()));</div><div class="line">                    String line = <span class="string">""</span>;</div><div class="line">                    <span class="keyword">while</span> ((line = bufferedReader.readLine()) != <span class="keyword">null</span>)</div><div class="line">                        stringBuilder.append(line);</div><div class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125; <span class="keyword">finally</span> &#123;</div><div class="line">                    <span class="keyword">if</span> (bufferedReader != <span class="keyword">null</span>)</div><div class="line">                        <span class="keyword">try</span> &#123;</div><div class="line">                            bufferedReader.close();</div><div class="line">                        &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">                            e.printStackTrace();</div><div class="line">                        &#125;</div><div class="line">                &#125;</div><div class="line"></div><div class="line"></div><div class="line">                WebResourceResponse webResourceResponse = <span class="keyword">null</span>;</div><div class="line">                webResourceResponse = <span class="keyword">new</span> WebResourceResponse(<span class="string">"text/html"</span>, <span class="string">"utf-8"</span>, <span class="keyword">new</span> ByteArrayInputStream(stringBuilder.toString().getBytes()));</div><div class="line">                <span class="keyword">return</span> webResourceResponse;</div><div class="line"></div><div class="line"></div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> WebResourceResponse <span class="title">shouldInterceptRequest</span><span class="params">(WebView view, String urlStr)</span> </span>&#123;</div><div class="line"></div><div class="line"></div><div class="line">                StringBuilder stringBuilder = <span class="keyword">new</span> StringBuilder();</div><div class="line">                BufferedReader bufferedReader = <span class="keyword">null</span>;</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    URL url = <span class="keyword">new</span> URL(<span class="string">"http://www.importnew.com/"</span>);</div><div class="line">                    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();</div><div class="line">                    httpURLConnection.setConnectTimeout(<span class="number">10</span> * <span class="number">1000</span>);</div><div class="line">                    httpURLConnection.setReadTimeout(<span class="number">40</span> * <span class="number">1000</span>);</div><div class="line">                    bufferedReader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(httpURLConnection.getInputStream()));</div><div class="line">                    String line = <span class="string">""</span>;</div><div class="line">                    <span class="keyword">while</span> ((line = bufferedReader.readLine()) != <span class="keyword">null</span>)</div><div class="line">                        stringBuilder.append(line);</div><div class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">                    e.printStackTrace();</div><div class="line">                &#125; <span class="keyword">finally</span> &#123;</div><div class="line">                    <span class="keyword">if</span> (bufferedReader != <span class="keyword">null</span>)</div><div class="line">                        <span class="keyword">try</span> &#123;</div><div class="line">                            bufferedReader.close();</div><div class="line">                        &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">                            e.printStackTrace();</div><div class="line">                        &#125;</div><div class="line">                &#125;</div><div class="line"></div><div class="line"></div><div class="line">                WebResourceResponse webResourceResponse = <span class="keyword">null</span>;</div><div class="line">                webResourceResponse = <span class="keyword">new</span> WebResourceResponse(<span class="string">"text/html"</span>, <span class="string">"utf-8"</span>, <span class="keyword">new</span> ByteArrayInputStream(stringBuilder.toString().getBytes()));</div><div class="line">                <span class="keyword">return</span> webResourceResponse;</div><div class="line"></div><div class="line">            &#125;</div></pre></td></tr></table></figure>
+<p><img src="http://img.blog.csdn.net/20160829110509536" alt="enter image description here"></p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><blockquote>
+<p>WebView中调用的每个请求都会经过那个拦截器，所以如果一个页面中又有超链接，那么依然会经过那个拦截器，所以上面Importnew中有些图片没有加载出来。因为我是以本文形式获取响应的。并且是以utf-8作为编码的，所以有时会出现乱码。</p>
+</blockquote>
+<p>最后 这篇文章偶然看到  喜欢 所以转了 原文地址附上 <a href="http://blog.csdn.net/qq_19431333/article/details/52351437" target="_blank" rel="external">http://blog.csdn.net/qq_19431333/article/details/52351437</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/android-webview/" rel="tag">#android webview</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/17/android通用框架之mvp/" rel="next" title="android通用框架之mvp">
+                <i class="fa fa-chevron-left"></i> android通用框架之mvp
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/25/coordinatorLayout/" rel="prev" title="coordinatorLayout">
+                coordinatorLayout <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Pandl" />
+          <p class="site-author-name" itemprop="name">Pandl</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#android-WebView拦截请求详解"><span class="nav-number">1.</span> <span class="nav-text">android WebView拦截请求详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、WebView基本用法"><span class="nav-number">1.0.1.</span> <span class="nav-text">1、WebView基本用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码块"><span class="nav-number">1.0.2.</span> <span class="nav-text">代码块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-、WebView拦截请求"><span class="nav-number">1.0.3.</span> <span class="nav-text">2 、WebView拦截请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意"><span class="nav-number">1.0.4.</span> <span class="nav-text">注意</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Pandl</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

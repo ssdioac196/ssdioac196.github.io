@@ -1,0 +1,708 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="android vr," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="这篇看下SimpleVrPanorama这个栗子
+
+SimpleVrPanorama其实这篇应该写SimpleVrPanorama和simplevideowidget 两个，但是由于篇幅过长就分开写了
+演示
+用AS录的没有触摸点显示，先凑合看吧
+预览图观看">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二、VR全景图显示器开发 ---- Android VR视频/Google VR for Android /VR Pano/VR Video">
+<meta property="og:url" content="http://yoursite.com/2016/11/25/GVR2/index.html">
+<meta property="og:site_name" content="Android心得小记">
+<meta property="og:description" content="这篇看下SimpleVrPanorama这个栗子
+
+SimpleVrPanorama其实这篇应该写SimpleVrPanorama和simplevideowidget 两个，但是由于篇幅过长就分开写了
+演示
+用AS录的没有触摸点显示，先凑合看吧
+预览图观看">
+<meta property="og:image" content="http://img.blog.csdn.net/20160805155921034">
+<meta property="og:image" content="http://img.blog.csdn.net/20160805162328927">
+<meta property="og:image" content="http://img.blog.csdn.net/20160805162754954">
+<meta property="og:image" content="http://img.blog.csdn.net/20160805162824871">
+<meta property="og:image" content="http://img.blog.csdn.net/20160805170635174">
+<meta property="og:image" content="http://img.blog.csdn.net/20160805170730237">
+<meta property="og:image" content="http://img.blog.csdn.net/20160805171743110">
+<meta property="og:updated_time" content="2016-11-25T03:18:36.506Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="二、VR全景图显示器开发 ---- Android VR视频/Google VR for Android /VR Pano/VR Video">
+<meta name="twitter:description" content="这篇看下SimpleVrPanorama这个栗子
+
+SimpleVrPanorama其实这篇应该写SimpleVrPanorama和simplevideowidget 两个，但是由于篇幅过长就分开写了
+演示
+用AS录的没有触摸点显示，先凑合看吧
+预览图观看">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20160805155921034">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/11/25/GVR2/"/>
+
+
+  <title> 二、VR全景图显示器开发 ---- Android VR视频/Google VR for Android /VR Pano/VR Video | Android心得小记 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Android心得小记</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">工作多年 没有做记录 真的白玩 赶紧开始记录自己的点滴</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                二、VR全景图显示器开发 ---- Android VR视频/Google VR for Android /VR Pano/VR Video
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-25T11:17:33+08:00" content="2016-11-25">
+              2016-11-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/android/" itemprop="url" rel="index">
+                    <span itemprop="name">android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>这篇看下SimpleVrPanorama这个栗子</p>
+</blockquote>
+<h4 id="SimpleVrPanorama"><a href="#SimpleVrPanorama" class="headerlink" title="SimpleVrPanorama"></a>SimpleVrPanorama</h4><p>其实这篇应该写SimpleVrPanorama和simplevideowidget 两个，但是由于篇幅过长就分开写了</p>
+<p>演示</p>
+<p>用AS录的没有触摸点显示，先凑合看吧</p>
+<p><a href="https://pan.baidu.com/s/1slL6G0X" target="_blank" rel="external">预览图观看</a></p>
+<a id="more"></a>
+<p>介绍</p>
+<p>官方在这里介绍了VR view 、支持平台等。我挑几个相对重要的介绍一下：<br>1、图像规格</p>
+<blockquote>
+<p>VR查看图像可以保存为PNG，JPEG或GIF。Google建议使用JPEG改进压缩。<br>为了获得最大的兼容性和性能，图像尺寸应该是2的倍数（例如，2048或4096）。<br>单个图像应为2：1纵横比（例如4096×2048）。<br>立体图像应为1：1纵横比（例如4096×4096）。</p>
+</blockquote>
+<p>如图：<br><img src="http://img.blog.csdn.net/20160805155921034" alt="enter image description here"></p>
+<p>2、 视频规格</p>
+<blockquote>
+<p>VR view视频应该被存储为H264编码的mp4文件。<br>单个视频应是2：1纵横比。<br>立体视频应是1：1纵横比。<br>一些较旧的设备不能解码的视频最大不能超过超过1080（192​​0×1080）。最大的兼容性和质量是头等大事，Google建议用户同时提供平面视觉1920x1080的视频和2</p>
+</blockquote>
+<p>3、如何录制VR视频</p>
+<p>生活中拍摄：</p>
+<p>360度拍摄的照片和视频越来越方便和实惠。 VR视图可以使用由支持上述equirect-全景格式的任何摄像机产生的图像。对于有兴趣在快速入门用户来说，我们最喜欢的解决方案如下：</p>
+<p><a href="https://play.google.com/store/apps/details?id=com.google.vr.cyclops&amp;hl=en" target="_blank" rel="external">Cardboard Camera App</a>：这个免费的Andr​​oid应用程序，允许用户快速捕捉立体图像360。</p>
+<p><a href="https://theta360.com/en/" target="_blank" rel="external">Ricoh Theta</a>：一个非常流行的，用于捕获单360度的图像和视频相对廉价的解决方案。</p>
+<p>CG（计算机动画）拍摄：</p>
+<p>遥感影像数据的VR观点并没有从现实世界限于捕获。 CGI软件可以生成360图像和视频，一切从建筑到演练预演的电影。我们的一些最流行的捕获解决方案的列举如下：</p>
+<p><a href="https://www.assetstore.unity3d.com/en/#!/content/38755" target="_blank" rel="external">360 Panorama Capture for Unity</a>：一个免费的，易于使用的360捕获了Unity插件。</p>
+<p><a href="https://www.unrealengine.com/zh-CN/what-is-unreal-engine-4" target="_blank" rel="external">Unreal（虚幻）</a>：UE4的最新版本内置了360捕获解决方案。</p>
+<p><a href="http://www.andrewhazelden.com/blog/2012/04/domemaster3d-stereoscopic-shader-for-autodesk-maya/" target="_blank" rel="external">Domemaster3D for Maya</a> ：从玛雅捕获单声道和立体声图像360免费的解决方案。</p>
+<p><a href="https://drive.google.com/folderview?id=0B0lYKpimsJgWfjFwa2xLQlVGNnJXcGxvbmNJbzIwUkRWQ2YtOHB5blNMNjlXSUlxbmJNVVU&amp;usp=drive_web" target="_blank" rel="external">Renderman</a>：开源库，用于捕捉360的内容。</p>
+<p><a href="https://developers.google.com/vr/jump/rendering-ods-content.pdf" target="_blank" rel="external">Rendering Omnidirectional Stereo Content</a>：一个有兴趣的人都在书写自己360捕获解决方案白皮书。</p>
+<p>Android平台</p>
+<p>在这里官方有这Android平台的详细介绍，主要内容如下：</p>
+<p>有这表明在官方SDK中的VR View 功能的两个示例应用程序：simplepanowidget和simplevideowidget。这两个样品的是显示分别使用VrPanoramaView和VrVideoView嵌入全景图像和视频。 </p>
+<p><img src="http://img.blog.csdn.net/20160805162328927" alt="enter image description here"></p>
+<p>允许用户通过旋转他们的电话，看全景的不同部分。<br>simplevideowidget示例还允许用户暂停(点击 VR View就暂停了。 VR View也就是视频那个区域），可以使用进度条改变进度。允许用户更改模式，分别是全屏模式和纸板模式。</p>
+<p>全屏模式：<br><img src="http://img.blog.csdn.net/20160805162754954" alt="enter image description here"></p>
+<p>纸板模式： </p>
+<p><img src="http://img.blog.csdn.net/20160805162824871" alt="enter image description here"></p>
+<p>代码分析</p>
+<p>（^_^ 为了方便学习与理解，基于官方Demo的代码进行了修改 ）</p>
+<p>前言</p>
+<p>这个栗子中需要注意几个知识点：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">VrPanoramaView <span class="comment">//Google提供给我们现实全景图片的View</span></div><div class="line"> Options <span class="comment">//VrPanoramaView 所需的设置</span></div><div class="line"> VrPanoramaEventListener<span class="comment">//为 VrPanoramaView 设置监听</span></div><div class="line"> loadImageFromBitmap<span class="comment">//加载图片的主要方法</span></div></pre></td></tr></table></figure>
+<p>AndroidManifest</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;!--Demo需要的两个权限--&gt;</div><div class="line">    &lt;uses-permission android:name="android.permission.INTERNET" /&gt;</div><div class="line">    &lt;uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /&gt;</div><div class="line"></div><div class="line">    &lt;application android:label="SimpleVrPanoramaActivity"</div><div class="line">      android:largeHeap="true"</div><div class="line">      android:theme="@android:style/Theme.Holo.Light"&gt;</div><div class="line">        &lt;!-- 这里原本有个 launchMode ，方便阅读 把这个和Activity中相关代码（onNewIntent） 删掉了 后面部介--&gt;</div><div class="line">        &lt;activity android:name=".SimpleVrPanoramaActivity"&gt;</div><div class="line">            &lt;intent-filter&gt;</div><div class="line">                &lt;action android:name="android.intent.action.MAIN" /&gt;</div><div class="line">                &lt;category android:name="android.intent.category.LAUNCHER" /&gt;</div><div class="line">                &lt;category android:name="com.google.intent.category.CARDBOARD" /&gt;</div><div class="line">            &lt;/intent-filter&gt;</div><div class="line">        &lt;/activity&gt;</div><div class="line">    &lt;/application&gt;</div></pre></td></tr></table></figure>
+<p>build.gradle</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">    <span class="function">compile <span class="title">project</span><span class="params">(<span class="string">':libraries-common'</span>)</span></span></div><div class="line">    compile <span class="title">project</span><span class="params">(<span class="string">':libraries-commonwidget'</span>)</span></div><div class="line">    compile <span class="title">project</span><span class="params">(<span class="string">':libraries-panowidget'</span>)</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>布局文件</p>
+<p>只有一个主要标签<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;com.google.vr.sdk.widgets.pano.VrPanoramaView</div><div class="line">       android:id=<span class="string">"@+id/pano_view"</span></div><div class="line">       android:layout_width=<span class="string">"match_parent"</span></div><div class="line">       android:layout_height=<span class="string">"250dip"</span></div><div class="line">       android:layout_margin=<span class="string">"5dip"</span></div><div class="line">       android:scrollbars=<span class="string">"@null"</span>/&gt;</div></pre></td></tr></table></figure></p>
+<p>SimpleVrPanoramaActivity</p>
+<p>正题来了~<br>看下我为了本次学习更改过的代码：<br>不了解Pair的请看这里： <a href="http://blog.csdn.net/qq_24889075/article/details/52127398" target="_blank" rel="external">http://blog.csdn.net/qq_24889075/article/details/52127398</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.google.vr.sdk.samples.simplepanowidget;</div><div class="line"></div><div class="line"><span class="keyword">import</span> android.app.Activity;</div><div class="line"><span class="keyword">import</span> android.graphics.BitmapFactory;</div><div class="line"><span class="keyword">import</span> android.os.AsyncTask;</div><div class="line"><span class="keyword">import</span> android.os.Bundle;</div><div class="line"><span class="keyword">import</span> android.util.Log;</div><div class="line"><span class="keyword">import</span> android.util.Pair;</div><div class="line"></div><div class="line"><span class="keyword">import</span> com.google.vr.sdk.widgets.pano.VrPanoramaEventListener;</div><div class="line"><span class="keyword">import</span> com.google.vr.sdk.widgets.pano.VrPanoramaView;</div><div class="line"><span class="keyword">import</span> com.google.vr.sdk.widgets.pano.VrPanoramaView.Options;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.io.IOException;</div><div class="line"><span class="keyword">import</span> java.io.InputStream;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleVrPanoramaActivity</span> <span class="keyword">extends</span> <span class="title">Activity</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TAG = <span class="string">"VrPanorama"</span>;</div><div class="line">    <span class="keyword">private</span> VrPanoramaView panoWidgetView;<span class="comment">//上面说的Google提供给我们现实全景图片的View</span></div><div class="line">    <span class="keyword">private</span> String fileUri = <span class="string">"first.jpg"</span>;<span class="comment">//assets文件夹下的文件名</span></div><div class="line"></div><div class="line">    <span class="keyword">private</span> Options panoOptions = <span class="keyword">new</span> Options();<span class="comment">//VrPanoramaView需要的设置</span></div><div class="line">    <span class="keyword">private</span> ImageLoaderTask backgroundImageLoaderTask;<span class="comment">//异步加载图片</span></div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.main_layout);<span class="comment">//布局上面贴了</span></div><div class="line"></div><div class="line">        panoWidgetView = (VrPanoramaView) findViewById(R.id.pano_view);<span class="comment">//初始化VrPanoramaView</span></div><div class="line">        panoWidgetView.setEventListener(<span class="keyword">new</span> ActivityEventListener());<span class="comment">//为VrPanoramaView添加监听</span></div><div class="line"></div><div class="line">        <span class="comment">//如果有任务在执行则停止它</span></div><div class="line">        <span class="keyword">if</span> (backgroundImageLoaderTask != <span class="keyword">null</span>) &#123;</div><div class="line">            backgroundImageLoaderTask.cancel(<span class="keyword">true</span>);</div><div class="line">        &#125;</div><div class="line">         <span class="comment">//设置inputType 为TYPE_STEREO_OVER_UNDER. 在后面会介绍TYPE_STEREO_OVER_UNDER的，暂时当做一个图片的显示类型就行</span></div><div class="line">        panoOptions.inputType = Options.TYPE_STEREO_OVER_UNDER;</div><div class="line">        <span class="comment">//创建一个任务</span></div><div class="line">        backgroundImageLoaderTask = <span class="keyword">new</span> ImageLoaderTask();</div><div class="line">        <span class="comment">//执行任务。将图片名（根据项目实际情况传吧）和设置传入</span></div><div class="line">        backgroundImageLoaderTask.execute(Pair.create(fileUri, panoOptions));</div><div class="line">    &#125;</div><div class="line">        <span class="comment">//异步任务</span></div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">ImageLoaderTask</span> <span class="keyword">extends</span> <span class="title">AsyncTask</span>&lt;<span class="title">Pair</span>&lt;<span class="title">String</span>, <span class="title">Options</span>&gt;, <span class="title">Void</span>, <span class="title">Boolean</span>&gt; </span>&#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">protected</span> Boolean <span class="title">doInBackground</span><span class="params">(Pair&lt;String, Options&gt;... fileInformation)</span> </span>&#123;<span class="comment">//真正写项目根据情况添加条件判断吧</span></div><div class="line"></div><div class="line">            InputStream istr = <span class="keyword">null</span>;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                istr = getAssets().open(fileInformation[<span class="number">0</span>].first);<span class="comment">//获取图片的输入流</span></div><div class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">                Log.e(TAG, <span class="string">"Could not decode default bitmap: "</span> + e);</div><div class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            Bitmap bitmap = BitmapFactory.decodeStream(istr);<span class="comment">//创建bitmap</span></div><div class="line">            panoWidgetView.loadImageFromBitmap(bitmap, fileInformation[<span class="number">0</span>].second);<span class="comment">//参数一为图片的bitmap，参数二为 VrPanoramaView 所需要的设置</span></div><div class="line"></div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                istr.close();<span class="comment">//关闭InputStream</span></div><div class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">                Log.e(TAG, <span class="string">"Could not close input stream: "</span> + e);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">ActivityEventListener</span> <span class="keyword">extends</span> <span class="title">VrPanoramaEventListener</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLoadSuccess</span><span class="params">()</span> </span>&#123;<span class="comment">//图片加载成功</span></div><div class="line">            Log.e(TAG, <span class="string">"onLoadSuccess"</span>);</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLoadError</span><span class="params">(String errorMessage)</span> </span>&#123;<span class="comment">//图片加载失败</span></div><div class="line">            Log.e(TAG, <span class="string">"Error loading pano: "</span> + errorMessage);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">()</span> </span>&#123;<span class="comment">//当我们点击了VrPanoramaView 时候出发</span></div><div class="line">            <span class="keyword">super</span>.onClick();</div><div class="line">            Log.e(TAG, <span class="string">"onClick"</span>);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onDisplayModeChanged</span><span class="params">(<span class="keyword">int</span> newDisplayMode)</span> </span>&#123;<span class="comment">//改变显示模式时候出发（全屏模式和纸板模式）</span></div><div class="line">            <span class="keyword">super</span>.onDisplayModeChanged(newDisplayMode);</div><div class="line">            Log.e(TAG, <span class="string">"onDisplayModeChanged"</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPause</span><span class="params">()</span> </span>&#123;</div><div class="line">        panoWidgetView.pauseRendering();<span class="comment">//暂停3D渲染和跟踪</span></div><div class="line">        <span class="keyword">super</span>.onPause();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onResume</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onResume();</div><div class="line">        panoWidgetView.resumeRendering();<span class="comment">//恢复3D渲染和跟踪</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</div><div class="line">        panoWidgetView.shutdown();<span class="comment">//关闭渲染下并释放相关的内存</span></div><div class="line"></div><div class="line">        <span class="keyword">if</span> (backgroundImageLoaderTask != <span class="keyword">null</span>) &#123;</div><div class="line">            backgroundImageLoaderTask.cancel(<span class="keyword">true</span>);<span class="comment">//停止异步任务</span></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">super</span>.onDestroy();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>看完了有木有感觉炒鸡简单啊？现在你已经掌握了如何使用 VrPanoramaView 了吧。</p>
+<blockquote>
+<p>用 VrPanoramaView 的确简单，但是局限性特别大，后面有机会 会详细说的。</p>
+</blockquote>
+<p>再介绍下代码中没提到的两个方法：</p>
+<blockquote>
+<p>setFullscreenButtonEnabled (false); //隐藏全屏模式按钮<br>setVrModeButtonEnabled(false); //隐藏VR模式按钮</p>
+</blockquote>
+<p>Options</p>
+<p>接下来看看刚刚的VrPanoramaView.Options吧，上文中 是这么设置的</p>
+<blockquote>
+<p>panoOptions.inputType = Options.TYPE_STEREO_OVER_UNDER;</p>
+</blockquote>
+<p>那么为什么要这样设置呢？先看官方对Options中标签的介绍：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TYPE_MONO = <span class="number">1</span>;</div><div class="line"></div><div class="line">    图像被预期以覆盖沿着其水平轴<span class="number">360</span>度，而垂直范围是根据图像的宽高比来计算。例如，如果一个<span class="number">1000</span>x250像素的图像，给出所述全景将覆盖<span class="number">360</span>x90度与垂直范围是-<span class="number">45</span>至+<span class="number">45</span>度。  </div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TYPE_STEREO_OVER_UNDER = <span class="number">2</span>;</div><div class="line">    包含两个大小相等的投影 全景图垂直叠加。顶部图像被显示给左眼、底部图像被显示给右眼。<span class="comment">//看下图你就懂了   </span></div><div class="line"></div><div class="line">    图像将覆盖沿水平轴<span class="number">360</span>度，而垂直范围是根据图像的宽高比来计算。例如，如果一个<span class="number">1000</span>x500像素的图像中给出（即<span class="number">1000</span>x250像素每个眼睛），全景将覆盖<span class="number">360</span>x90度与垂直范围是-<span class="number">45</span>至+<span class="number">45</span>度。</div></pre></td></tr></table></figure>
+<p><img src="http://img.blog.csdn.net/20160805170635174" alt="enter image description here"></p>
+<p>我要显示的图片是下图这样的，所以就要设置为 ‘TYPE_STEREO_OVER_UNDER’ </p>
+<p><img src="http://img.blog.csdn.net/20160805170730237" alt="enter image description here"></p>
+<p>那么什么样的图片设置为 ‘TYPE_MONO’ 呢？<br>请看： </p>
+<p><img src="http://img.blog.csdn.net/20160805171743110" alt="enter image description here"></p>
+<blockquote>
+<p>不知道有没有眼神好的同学发现这个问题：TYPE_STEREO_OVER_UNDER类型的图片每次切换模式时候 图片中间都会有一条垂直于水平线的分割线（很浅 很浅 然后逐渐消失），TYPE<em>MONO 就没有 ^</em>^</p>
+</blockquote>
+<p>Options类中的代码也十分简单</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Options</span> </span>&#123;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TYPE_START_MARKER = <span class="number">0</span>;<span class="comment">//起始标记</span></div><div class="line">        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TYPE_MONO = <span class="number">1</span>;</div><div class="line">        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TYPE_STEREO_OVER_UNDER = <span class="number">2</span>;</div><div class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TYPE_END_MARKER = <span class="number">3</span>;<span class="comment">//结束标记</span></div><div class="line">        <span class="keyword">public</span> <span class="keyword">int</span> inputType = <span class="number">1</span>;<span class="comment">//默认为一</span></div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Options</span><span class="params">()</span> </span>&#123;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">void</span> <span class="title">validate</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">if</span>(<span class="keyword">this</span>.inputType &lt;= <span class="number">0</span> || <span class="keyword">this</span>.inputType &gt;= <span class="number">3</span>) &#123;<span class="comment">//标记错误处理</span></div><div class="line">                String var10000 = VrPanoramaView.TAG;</div><div class="line">                <span class="keyword">int</span> var1 = <span class="keyword">this</span>.inputType;</div><div class="line">                Log.e(var10000, (<span class="keyword">new</span> StringBuilder(<span class="number">38</span>)).append(<span class="string">"Invalid Options.inputType: "</span>).append(var1).toString());</div><div class="line">                <span class="keyword">this</span>.inputType = <span class="number">1</span>;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>调皮的你如果在loadImageFromBitmap（bitmap，options）方法中 将options不小心设置为null了，也没关系。我在源码中我发现下面的代码，感觉挺温馨的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">loadImageFromBitmap</span><span class="params">(Bitmap bitmap, VrPanoramaView.Options options)</span> </span>&#123;</div><div class="line">        <span class="comment">//有木有那里暖暖的 ^_^</span></div><div class="line">        <span class="keyword">if</span>(options == <span class="keyword">null</span>) &#123;</div><div class="line">            options = <span class="keyword">new</span> VrPanoramaView.Options();</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            options.validate();</div><div class="line">        &#125;</div><div class="line">    <span class="comment">//重点不在这里 可以无视它</span></div><div class="line">        <span class="keyword">this</span>.renderer.loadImageFromBitmap(bitmap, options, <span class="keyword">this</span>.eventListener);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>至此com.google.vr.sdk.widgets.common包、com.google.vr.sdk.widgets.pano包和com.google.vr.sdk.widgets.video包（代码下一篇介绍） 的主要内容都介绍完了，总结下吧</p>
+<p>总结</p>
+<p>总结下如何在Android设备上用Google的SDK做一款全景图的显示器（播放器?查看器?… 不知道叫什么合适）：</p>
+<p>导入google的库<br>在相应的布局文件中引入控件 com.google.vr.sdk.widgets.pano.VrPanoramaView<br>初始化控件<br>为VrPanoramaView设置options<br>找到图片的Bitmap<br>调用VrPanoramaView的loadImageFromBitmap方法<br>在onPause、onResume、onDestroy中做出相应处理</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/android-vr/" rel="tag">#android vr</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/25/GVR/" rel="next" title="一、初识GVR ---- Android VR视频/Google VR for Android /VR Pano/VR Video">
+                <i class="fa fa-chevron-left"></i> 一、初识GVR ---- Android VR视频/Google VR for Android /VR Pano/VR Video
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/25/GVR3/" rel="prev" title="三、VR视频播放器开发 ---- Android VR视频/Google VR for Android /VR Pano/VR Video">
+                三、VR视频播放器开发 ---- Android VR视频/Google VR for Android /VR Pano/VR Video <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Pandl" />
+          <p class="site-author-name" itemprop="name">Pandl</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#SimpleVrPanorama"><span class="nav-number">1.</span> <span class="nav-text">SimpleVrPanorama</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Pandl</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,665 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="android coordinatorLayout," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="CoordinatorLayout布局的使用
+作为Android的控件, CoordinatorLayout已经加入最新的HelloWorld项目中, 也是Material风格的重要组件, 协调(Coordinate)其他组件, 实现联动. 那么让我们来看看这个动画效果怎么用吧?">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CoordinatorLayout布局的使用">
+<meta property="og:url" content="http://yoursite.com/2016/10/26/CoordinatorLayout布局的使用/index.html">
+<meta property="og:site_name" content="Android心得小记">
+<meta property="og:description" content="CoordinatorLayout布局的使用
+作为Android的控件, CoordinatorLayout已经加入最新的HelloWorld项目中, 也是Material风格的重要组件, 协调(Coordinate)其他组件, 实现联动. 那么让我们来看看这个动画效果怎么用吧?">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/749674-24127c71c7e90fb2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/749674-b7f1ad96c90bdd61.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/749674-71735cefe17a4966.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2016-10-26T09:09:29.054Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CoordinatorLayout布局的使用">
+<meta name="twitter:description" content="CoordinatorLayout布局的使用
+作为Android的控件, CoordinatorLayout已经加入最新的HelloWorld项目中, 也是Material风格的重要组件, 协调(Coordinate)其他组件, 实现联动. 那么让我们来看看这个动画效果怎么用吧?">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/749674-24127c71c7e90fb2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/10/26/CoordinatorLayout布局的使用/"/>
+
+
+  <title> CoordinatorLayout布局的使用 | Android心得小记 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Android心得小记</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">工作多年 没有做记录 真的白玩 赶紧开始记录自己的点滴</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                CoordinatorLayout布局的使用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-26T14:44:13+08:00" content="2016-10-26">
+              2016-10-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/android/" itemprop="url" rel="index">
+                    <span itemprop="name">android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="CoordinatorLayout布局的使用"><a href="#CoordinatorLayout布局的使用" class="headerlink" title="CoordinatorLayout布局的使用"></a>CoordinatorLayout布局的使用</h2><blockquote>
+<p>作为Android的控件, CoordinatorLayout已经加入最新的HelloWorld项目中, 也是Material风格的重要组件, 协调(Coordinate)其他组件, 实现联动. 那么让我们来看看这个动画效果怎么用吧?<br><a id="more"></a></p>
+</blockquote>
+<p>项目地址：<a href="https://github.com/ssdioac196/coordinatorlayout" target="_blank" rel="external">https://github.com/ssdioac196/coordinatorlayout</a></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/749674-24127c71c7e90fb2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="enter image description here"></p>
+<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>首先新建HelloWorld项目.</p>
+<p>在项目的build.gradle文件中, 引入头像控件库和CardView库, 在本例中会使用.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">compile <span class="string">'de.hdodenhof:circleimageview:1.3.0'</span></div><div class="line">compile <span class="string">'com.android.support:cardview-v7:23.1.0'</span></div><div class="line">compile <span class="string">'com.jakewharton:butterknife:7.0.1'</span></div></pre></td></tr></table></figure>
+<h3 id="页面"><a href="#页面" class="headerlink" title="页面"></a>页面</h3><p>在activity_main.xml中, 保留CoordinatorLayout和AppBarLayout, 重新编写页面.</p>
+<blockquote>
+<p>android:fitsSystemWindows=”true” 这句也需要去掉, 本例需要保留最上面的状态栏(status bar), 这个属性会导致重叠, 默认false.</p>
+</blockquote>
+<p>activity_main.xml代码</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&lt;android.support.design.widget.CoordinatorLayout</div><div class="line">    xmlns:android="http://schemas.android.com/apk/res/android"</div><div class="line">    xmlns:app="http://schemas.android.com/apk/res-auto"</div><div class="line">    xmlns:tools="http://schemas.android.com/tools"</div><div class="line">    android:layout_width="match_parent"</div><div class="line">    android:layout_height="match_parent"</div><div class="line">    android:fitsSystemWindows="true"</div><div class="line">    tools:context=".MainActivity"&gt;</div><div class="line"></div><div class="line">    &lt;android.support.design.widget.AppBarLayout</div><div class="line">        android:layout_width="match_parent"</div><div class="line">        android:layout_height="wrap_content"</div><div class="line">        android:theme="@style/AppTheme.AppBarOverlay"&gt;</div><div class="line"></div><div class="line">    &lt;/android.support.design.widget.AppBarLayout&gt;</div><div class="line"></div><div class="line">&lt;/android.support.design.widget.CoordinatorLayout&gt;</div></pre></td></tr></table></figure>
+<p>修改主题颜色, 粉色符合风格</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;color name="colorPrimary"&gt;#FFCCCC&lt;/color&gt;</div><div class="line">&lt;color name="colorPrimaryDark"&gt;#FF00FF&lt;/color&gt;</div></pre></td></tr></table></figure>
+<p>在AppBarLayout中, 添加CollapsingToolbarLayout控件, CollapsingToolbar会滚动消失, 被ToolBar替换, 实现滚动动画.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;android.support.design.widget.CollapsingToolbarLayout</div><div class="line">          android:layout_width="match_parent"</div><div class="line">          android:layout_height="450dp"</div><div class="line">          app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"&gt;</div><div class="line"></div><div class="line">      &lt;/android.support.design.widget.CollapsingToolbarLayout&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>app:layout_scrollFlags的属性, scroll滑动, exitUntilCollapsed退出到最小, snap自动滑动动画, 定义CollapsingToolbarLayout的滑动属性.</p>
+</blockquote>
+<p>CollapsingToolbarLayout划分两部分, 一部分大图, 一部分文字.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">&lt;ImageView</div><div class="line">     android:layout_width="match_parent"</div><div class="line">     android:layout_height="300dp"</div><div class="line">     android:scaleType="centerCrop"</div><div class="line">     android:src="@drawable/large"</div><div class="line">     app:layout_collapseMode="parallax" /&gt;</div><div class="line"></div><div class="line"> &lt;FrameLayout</div><div class="line">     android:layout_width="match_parent"</div><div class="line">     android:layout_height="150dp"</div><div class="line">     android:layout_gravity="bottom|center_horizontal"</div><div class="line">     android:background="@color/colorPrimary"</div><div class="line">     app:layout_collapseMode="parallax"&gt;</div><div class="line"></div><div class="line">     &lt;LinearLayout</div><div class="line">         android:layout_width="wrap_content"</div><div class="line">         android:layout_height="wrap_content"</div><div class="line">         android:orientation="vertical"</div><div class="line">         android:layout_gravity="center"&gt;</div><div class="line"></div><div class="line">         &lt;TextView</div><div class="line">             android:layout_width="wrap_content"</div><div class="line">             android:layout_height="wrap_content"</div><div class="line">             android:layout_gravity="center_horizontal"</div><div class="line">             android:gravity="bottom|center"</div><div class="line">             android:text="@string/person_name"</div><div class="line">             android:textColor="@android:color/white"</div><div class="line">             android:textSize="30sp" /&gt;</div><div class="line"></div><div class="line">         &lt;TextView</div><div class="line">             android:layout_width="wrap_content"</div><div class="line">             android:layout_height="wrap_content"</div><div class="line">             android:layout_gravity="center_horizontal"</div><div class="line">             android:layout_marginTop="4dp"</div><div class="line">             android:text="@string/person_title"</div><div class="line">             android:textColor="@android:color/white"/&gt;</div><div class="line">     &lt;/LinearLayout&gt;</div><div class="line"> &lt;/FrameLayout&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>app:layout_collapseMode=”parallax”折叠时的视差效果, 自动滑动.</p>
+</blockquote>
+<p>效果:<br><img src="http://upload-images.jianshu.io/upload_images/749674-b7f1ad96c90bdd61.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="enter image description here"></p>
+<p><strong>CollapsingToolbarLayout</strong></p>
+<p>添加NestedScrollView, 文字的滚动视图</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&lt;android.support.v4.widget.NestedScrollView</div><div class="line">       android:layout_width="match_parent"</div><div class="line">       android:layout_height="match_parent"</div><div class="line">       android:scrollbars="none"</div><div class="line">       app:behavior_overlapTop="30dp"</div><div class="line">       app:layout_behavior="@string/appbar_scrolling_view_behavior"&gt;</div><div class="line"></div><div class="line">       &lt;android.support.v7.widget.CardView</div><div class="line">           android:layout_width="wrap_content"</div><div class="line">           android:layout_height="wrap_content"</div><div class="line">           android:layout_margin="8dp"</div><div class="line">           app:cardElevation="8dp"</div><div class="line">           app:contentPadding="16dp"&gt;</div><div class="line"></div><div class="line">           &lt;TextView</div><div class="line">               android:layout_width="match_parent"</div><div class="line">               android:layout_height="wrap_content"</div><div class="line">               android:lineSpacingExtra="8dp"</div><div class="line">               android:text="@string/person_intro"/&gt;</div><div class="line"></div><div class="line">       &lt;/android.support.v7.widget.CardView&gt;</div><div class="line">   &lt;/android.support.v4.widget.NestedScrollView&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>app:behavior_overlapTop=”30dp”, The amount that the scrolling view should overlap the bottom of any AppBarLayout. 使ScrollView压在AppBarLayout上面一段长度.</p>
+</blockquote>
+<p>添加ToolBar, 滚动结束的效果图.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">&lt;android.support.v7.widget.Toolbar</div><div class="line">       android:layout_width="match_parent"</div><div class="line">       android:layout_height="?attr/actionBarSize"</div><div class="line">       android:background="@color/colorPrimary"</div><div class="line">       app:layout_anchor="@id/main_fl_title"</div><div class="line">       app:theme="@style/ThemeOverlay.AppCompat.Dark"&gt;</div><div class="line"></div><div class="line">       &lt;LinearLayout</div><div class="line">           android:layout_width="wrap_content"</div><div class="line">           android:layout_height="match_parent"</div><div class="line">           android:orientation="horizontal"&gt;</div><div class="line"></div><div class="line">           &lt;Space</div><div class="line">               android:layout_width="@dimen/image_final_width"</div><div class="line">               android:layout_height="@dimen/image_final_width" /&gt;</div><div class="line"></div><div class="line">           &lt;TextView</div><div class="line">               android:layout_width="wrap_content"</div><div class="line">               android:layout_height="match_parent"</div><div class="line">               android:gravity="center_vertical"</div><div class="line">               android:text="@string/person_name"</div><div class="line">               android:textColor="@android:color/white"</div><div class="line">               android:textSize="20sp"/&gt;</div><div class="line"></div><div class="line">       &lt;/LinearLayout&gt;</div><div class="line"></div><div class="line">   &lt;/android.support.v7.widget.Toolbar&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>ToolBar是工具栏, 滑动完成时, 在最上部显示. Space预留头像的位置.</p>
+</blockquote>
+<p>圆形头像CircleImageView显示(使用第三方库)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;de.hdodenhof.circleimageview.CircleImageView</div><div class="line">       android:layout_width=<span class="string">"120dp"</span></div><div class="line">       android:layout_height=<span class="string">"120dp"</span></div><div class="line">       android:layout_gravity=<span class="string">"center"</span></div><div class="line">       android:src=<span class="string">"@drawable/small"</span></div><div class="line">       app:border_color=<span class="string">"@android:color/white"</span></div><div class="line">       app:border_width=<span class="string">"2dp"</span></div><div class="line">       app:layout_behavior=<span class="string">".AvatarImageBehavior"</span> /&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>头像控件的滑动行为是自定义的类, 具体行为参考注释. 判断起始和终止位置, child和dependency视图联动, 这里是图像视图和Toolbar联动.</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 图片控件位置动画</div><div class="line"> *</div><div class="line"> * <span class="doctag">@author</span> wangchenlong</div><div class="line"> */</div><div class="line"><span class="meta">@SuppressWarnings</span>(<span class="string">"unused"</span>)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AvatarImageBehavior</span> <span class="keyword">extends</span> <span class="title">CoordinatorLayout</span>.<span class="title">Behavior</span>&lt;<span class="title">CircleImageView</span>&gt; </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">float</span> MIN_AVATAR_PERCENTAGE_SIZE = <span class="number">0.3f</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span> EXTRA_FINAL_AVATAR_PADDING = <span class="number">80</span>;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mStartYPosition; <span class="comment">// 起始的Y轴位置</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mFinalYPosition; <span class="comment">// 结束的Y轴位置</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mStartHeight; <span class="comment">// 开始的图片高度</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mFinalHeight; <span class="comment">// 结束的图片高度</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mStartXPosition; <span class="comment">// 起始的X轴高度</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mFinalXPosition; <span class="comment">// 结束的X轴高度</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">float</span> mStartToolbarPosition; <span class="comment">// Toolbar的起始位置</span></div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Context mContext;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">float</span> mAvatarMaxSize;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AvatarImageBehavior</span><span class="params">(Context context, AttributeSet attrs)</span> </span>&#123;</div><div class="line">        mContext = context;</div><div class="line">        init();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</div><div class="line">        bindDimensions();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">bindDimensions</span><span class="params">()</span> </span>&#123;</div><div class="line">        mAvatarMaxSize = mContext.getResources().getDimension(R.dimen.image_width);</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">layoutDependsOn</span><span class="params">(CoordinatorLayout parent, CircleImageView child, View dependency)</span> </span>&#123;</div><div class="line">        <span class="comment">// 依赖Toolbar控件</span></div><div class="line">        <span class="keyword">return</span> dependency <span class="keyword">instanceof</span> Toolbar;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onDependentViewChanged</span><span class="params">(CoordinatorLayout parent, CircleImageView child, View dependency)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="comment">// 初始化属性</span></div><div class="line">        shouldInitProperties(child, dependency);</div><div class="line"></div><div class="line">        <span class="comment">// 最大滑动距离: 起始位置-状态栏高度</span></div><div class="line">        <span class="keyword">final</span> <span class="keyword">int</span> maxScrollDistance = (<span class="keyword">int</span>) (mStartToolbarPosition - getStatusBarHeight());</div><div class="line"></div><div class="line">        <span class="comment">// 滑动的百分比</span></div><div class="line">        <span class="keyword">float</span> expandedPercentageFactor = dependency.getY() / maxScrollDistance;</div><div class="line"></div><div class="line">        <span class="comment">// Y轴距离</span></div><div class="line">        <span class="keyword">float</span> distanceYToSubtract = ((mStartYPosition - mFinalYPosition)</div><div class="line">                * (<span class="number">1f</span> - expandedPercentageFactor)) + (child.getHeight() / <span class="number">2</span>);</div><div class="line"></div><div class="line">        <span class="comment">// X轴距离</span></div><div class="line">        <span class="keyword">float</span> distanceXToSubtract = ((mStartXPosition - mFinalXPosition)</div><div class="line">                * (<span class="number">1f</span> - expandedPercentageFactor)) + (child.getWidth() / <span class="number">2</span>);</div><div class="line"></div><div class="line">        <span class="comment">// 高度减小</span></div><div class="line">        <span class="keyword">float</span> heightToSubtract = ((mStartHeight - mFinalHeight) * (<span class="number">1f</span> - expandedPercentageFactor));</div><div class="line"></div><div class="line">        <span class="comment">// 图片位置</span></div><div class="line">        child.setY(mStartYPosition - distanceYToSubtract);</div><div class="line">        child.setX(mStartXPosition - distanceXToSubtract);</div><div class="line"></div><div class="line">        <span class="comment">// 图片大小</span></div><div class="line">        CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams) child.getLayoutParams();</div><div class="line">        lp.width = (<span class="keyword">int</span>) (mStartHeight - heightToSubtract);</div><div class="line">        lp.height = (<span class="keyword">int</span>) (mStartHeight - heightToSubtract);</div><div class="line">        child.setLayoutParams(lp);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 初始化动画值</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> child      图片控件</div><div class="line">     * <span class="doctag">@param</span> dependency ToolBar</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">shouldInitProperties</span><span class="params">(CircleImageView child, View dependency)</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="comment">// 图片控件中心</span></div><div class="line">        <span class="keyword">if</span> (mStartYPosition == <span class="number">0</span>)</div><div class="line">            mStartYPosition = (<span class="keyword">int</span>) (child.getY() + (child.getHeight() / <span class="number">2</span>));</div><div class="line"></div><div class="line">        <span class="comment">// Toolbar中心</span></div><div class="line">        <span class="keyword">if</span> (mFinalYPosition == <span class="number">0</span>)</div><div class="line">            mFinalYPosition = (dependency.getHeight() / <span class="number">2</span>);</div><div class="line"></div><div class="line">        <span class="comment">// 图片高度</span></div><div class="line">        <span class="keyword">if</span> (mStartHeight == <span class="number">0</span>)</div><div class="line">            mStartHeight = child.getHeight();</div><div class="line"></div><div class="line">        <span class="comment">// Toolbar缩略图高度</span></div><div class="line">        <span class="keyword">if</span> (mFinalHeight == <span class="number">0</span>)</div><div class="line">            mFinalHeight = mContext.getResources().getDimensionPixelOffset(R.dimen.image_final_width);</div><div class="line"></div><div class="line">        <span class="comment">// 图片控件水平中心</span></div><div class="line">        <span class="keyword">if</span> (mStartXPosition == <span class="number">0</span>)</div><div class="line">            mStartXPosition = (<span class="keyword">int</span>) (child.getX() + (child.getWidth() / <span class="number">2</span>));</div><div class="line"></div><div class="line">        <span class="comment">// 边缘+缩略图宽度的一半</span></div><div class="line">        <span class="keyword">if</span> (mFinalXPosition == <span class="number">0</span>)</div><div class="line">            mFinalXPosition = mContext.getResources().getDimensionPixelOffset(R.dimen.abc_action_bar_content_inset_material) + (mFinalHeight / <span class="number">2</span>);</div><div class="line"></div><div class="line">        <span class="comment">// Toolbar的起始位置</span></div><div class="line">        <span class="keyword">if</span> (mStartToolbarPosition == <span class="number">0</span>)</div><div class="line">            mStartToolbarPosition = dependency.getY() + (dependency.getHeight() / <span class="number">2</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 获取状态栏高度</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getStatusBarHeight</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> result = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> resourceId = mContext.getResources().getIdentifier(<span class="string">"status_bar_height"</span>, <span class="string">"dimen"</span>, <span class="string">"android"</span>);</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (resourceId &gt; <span class="number">0</span>) &#123;</div><div class="line">            result = mContext.getResources().getDimensionPixelSize(resourceId);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>添加需要使用的id, activity_main.xml如下</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line">&lt;android.support.design.widget.CoordinatorLayout</div><div class="line">    xmlns:android="http://schemas.android.com/apk/res/android"</div><div class="line">    xmlns:app="http://schemas.android.com/apk/res-auto"</div><div class="line">    xmlns:tools="http://schemas.android.com/tools"</div><div class="line">    android:layout_width="match_parent"</div><div class="line">    android:layout_height="match_parent"</div><div class="line">    android:fitsSystemWindows="false"</div><div class="line">    tools:context=".MainActivity"&gt;</div><div class="line"></div><div class="line">    &lt;android.support.design.widget.AppBarLayout</div><div class="line">        android:id="@+id/main_abl_app_bar"</div><div class="line">        android:layout_width="match_parent"</div><div class="line">        android:layout_height="wrap_content"</div><div class="line">        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"&gt;</div><div class="line"></div><div class="line">        &lt;android.support.design.widget.CollapsingToolbarLayout</div><div class="line">            android:layout_width="match_parent"</div><div class="line">            android:layout_height="450dp"</div><div class="line">            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"&gt;</div><div class="line"></div><div class="line">            &lt;ImageView</div><div class="line">                android:id="@+id/main_iv_placeholder"</div><div class="line">                android:layout_width="match_parent"</div><div class="line">                android:layout_height="300dp"</div><div class="line">                android:scaleType="centerCrop"</div><div class="line">                android:src="@drawable/large"</div><div class="line">                app:layout_collapseMode="parallax" /&gt;</div><div class="line"></div><div class="line">            &lt;FrameLayout</div><div class="line">                android:id="@+id/main_fl_title"</div><div class="line">                android:layout_width="match_parent"</div><div class="line">                android:layout_height="150dp"</div><div class="line">                android:layout_gravity="bottom|center_horizontal"</div><div class="line">                android:background="@color/colorPrimary"</div><div class="line">                app:layout_collapseMode="parallax"&gt;</div><div class="line"></div><div class="line">                &lt;LinearLayout</div><div class="line">                    android:id="@+id/main_ll_title_container"</div><div class="line">                    android:layout_width="wrap_content"</div><div class="line">                    android:layout_height="wrap_content"</div><div class="line">                    android:layout_gravity="center"</div><div class="line">                    android:orientation="vertical"&gt;</div><div class="line"></div><div class="line">                    &lt;TextView</div><div class="line">                        android:layout_marginTop="@dimen/title_margin"</div><div class="line">                        android:layout_width="wrap_content"</div><div class="line">                        android:layout_height="wrap_content"</div><div class="line">                        android:layout_gravity="center_horizontal"</div><div class="line">                        android:gravity="bottom|center"</div><div class="line">                        android:text="@string/person_name"</div><div class="line">                        android:textColor="@android:color/white"</div><div class="line">                        android:textSize="30sp"/&gt;</div><div class="line"></div><div class="line">                    &lt;TextView</div><div class="line">                        android:layout_width="wrap_content"</div><div class="line">                        android:layout_height="wrap_content"</div><div class="line">                        android:layout_gravity="center_horizontal"</div><div class="line">                        android:layout_marginTop="4dp"</div><div class="line">                        android:text="@string/person_title"</div><div class="line">                        android:textColor="@android:color/white" /&gt;</div><div class="line">                &lt;/LinearLayout&gt;</div><div class="line">            &lt;/FrameLayout&gt;</div><div class="line">        &lt;/android.support.design.widget.CollapsingToolbarLayout&gt;</div><div class="line">    &lt;/android.support.design.widget.AppBarLayout&gt;</div><div class="line"></div><div class="line">    &lt;android.support.v4.widget.NestedScrollView</div><div class="line">        android:layout_width="match_parent"</div><div class="line">        android:layout_height="match_parent"</div><div class="line">        android:scrollbars="none"</div><div class="line">        app:behavior_overlapTop="30dp"</div><div class="line">        app:layout_behavior="@string/appbar_scrolling_view_behavior"&gt;</div><div class="line"></div><div class="line">        &lt;android.support.v7.widget.CardView</div><div class="line">            android:layout_width="wrap_content"</div><div class="line">            android:layout_height="wrap_content"</div><div class="line">            android:layout_margin="8dp"</div><div class="line">            app:cardElevation="8dp"</div><div class="line">            app:contentPadding="16dp"&gt;</div><div class="line"></div><div class="line">            &lt;TextView</div><div class="line">                android:layout_width="match_parent"</div><div class="line">                android:layout_height="wrap_content"</div><div class="line">                android:lineSpacingExtra="8dp"</div><div class="line">                android:text="@string/person_intro" /&gt;</div><div class="line"></div><div class="line">        &lt;/android.support.v7.widget.CardView&gt;</div><div class="line"></div><div class="line">    &lt;/android.support.v4.widget.NestedScrollView&gt;</div><div class="line"></div><div class="line">    &lt;android.support.v7.widget.Toolbar</div><div class="line">        android:id="@+id/main_tb_toolbar"</div><div class="line">        android:layout_width="match_parent"</div><div class="line">        android:layout_height="?attr/actionBarSize"</div><div class="line">        android:background="@color/colorPrimary"</div><div class="line">        app:layout_anchor="@id/main_fl_title"</div><div class="line">        app:theme="@style/ThemeOverlay.AppCompat.Dark"&gt;</div><div class="line"></div><div class="line">        &lt;LinearLayout</div><div class="line">            android:layout_width="wrap_content"</div><div class="line">            android:layout_height="match_parent"</div><div class="line">            android:orientation="horizontal"&gt;</div><div class="line"></div><div class="line">            &lt;Space</div><div class="line">                android:layout_width="@dimen/image_final_width"</div><div class="line">                android:layout_height="@dimen/image_final_width" /&gt;</div><div class="line"></div><div class="line">            &lt;TextView</div><div class="line">                android:id="@+id/main_tv_title"</div><div class="line">                android:layout_width="wrap_content"</div><div class="line">                android:layout_height="match_parent"</div><div class="line">                android:layout_marginLeft="8dp"</div><div class="line">                android:gravity="center_vertical"</div><div class="line">                android:text="@string/person_name"</div><div class="line">                android:textColor="@android:color/white"</div><div class="line">                android:textSize="20sp"</div><div class="line">                android:visibility="invisible"/&gt;</div><div class="line"></div><div class="line">        &lt;/LinearLayout&gt;</div><div class="line"></div><div class="line">    &lt;/android.support.v7.widget.Toolbar&gt;</div><div class="line"></div><div class="line">    &lt;de.hdodenhof.circleimageview.CircleImageView</div><div class="line">        android:layout_width="@dimen/image_width"</div><div class="line">        android:layout_height="@dimen/image_width"</div><div class="line">        android:layout_gravity="center"</div><div class="line">        android:src="@drawable/small"</div><div class="line">        app:border_color="@android:color/white"</div><div class="line">        app:border_width="2dp"</div><div class="line">        app:layout_behavior=".AvatarImageBehavior" /&gt;</div><div class="line"></div><div class="line">&lt;/android.support.design.widget.CoordinatorLayout&gt;</div></pre></td></tr></table></figure>
+<p>效果:<br><img src="http://upload-images.jianshu.io/upload_images/749674-71735cefe17a4966.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="enter image description here"></p>
+<h2 id="逻辑"><a href="#逻辑" class="headerlink" title="逻辑"></a>逻辑</h2><p>在onCreate里面设置滑动逻辑, 设置两个动画: 监听AppBar的滑动, 处理Toolbar和Title的显示; 自动滑动效果.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        ButterKnife.bind(<span class="keyword">this</span>);</div><div class="line"></div><div class="line">        mTbToolbar.setTitle(<span class="string">""</span>);</div><div class="line"></div><div class="line">        <span class="comment">// AppBar的监听</span></div><div class="line">        mAblAppBar.addOnOffsetChangedListener(<span class="keyword">new</span> AppBarLayout.OnOffsetChangedListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onOffsetChanged</span><span class="params">(AppBarLayout appBarLayout, <span class="keyword">int</span> verticalOffset)</span> </span>&#123;</div><div class="line">                <span class="keyword">int</span> maxScroll = appBarLayout.getTotalScrollRange();</div><div class="line">                <span class="keyword">float</span> percentage = (<span class="keyword">float</span>) Math.abs(verticalOffset) / (<span class="keyword">float</span>) maxScroll;</div><div class="line">                handleAlphaOnTitle(percentage);</div><div class="line">                handleToolbarTitleVisibility(percentage);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">        initParallaxValues(); <span class="comment">// 自动滑动效果</span></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>根据滑动百分比, 设置Title和Toolbar的显示与消失, 使用Alpha动画.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 处理ToolBar的显示</span></div><div class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">handleToolbarTitleVisibility</span><span class="params">(<span class="keyword">float</span> percentage)</span> </span>&#123;</div><div class="line">       <span class="keyword">if</span> (percentage &gt;= PERCENTAGE_TO_SHOW_TITLE_AT_TOOLBAR) &#123;</div><div class="line">           <span class="keyword">if</span> (!mIsTheTitleVisible) &#123;</div><div class="line">               startAlphaAnimation(mTvToolbarTitle, ALPHA_ANIMATIONS_DURATION, View.VISIBLE);</div><div class="line">               mIsTheTitleVisible = <span class="keyword">true</span>;</div><div class="line">           &#125;</div><div class="line">       &#125; <span class="keyword">else</span> &#123;</div><div class="line">           <span class="keyword">if</span> (mIsTheTitleVisible) &#123;</div><div class="line">               startAlphaAnimation(mTvToolbarTitle, ALPHA_ANIMATIONS_DURATION, View.INVISIBLE);</div><div class="line">               mIsTheTitleVisible = <span class="keyword">false</span>;</div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="comment">// 控制Title的显示</span></div><div class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">handleAlphaOnTitle</span><span class="params">(<span class="keyword">float</span> percentage)</span> </span>&#123;</div><div class="line">       <span class="keyword">if</span> (percentage &gt;= PERCENTAGE_TO_HIDE_TITLE_DETAILS) &#123;</div><div class="line">           <span class="keyword">if</span> (mIsTheTitleContainerVisible) &#123;</div><div class="line">               startAlphaAnimation(mLlTitleContainer, ALPHA_ANIMATIONS_DURATION, View.INVISIBLE);</div><div class="line">               mIsTheTitleContainerVisible = <span class="keyword">false</span>;</div><div class="line">           &#125;</div><div class="line">       &#125; <span class="keyword">else</span> &#123;</div><div class="line">           <span class="keyword">if</span> (!mIsTheTitleContainerVisible) &#123;</div><div class="line">               startAlphaAnimation(mLlTitleContainer, ALPHA_ANIMATIONS_DURATION, View.VISIBLE);</div><div class="line">               mIsTheTitleContainerVisible = <span class="keyword">true</span>;</div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   <span class="comment">// 设置渐变的动画</span></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">startAlphaAnimation</span><span class="params">(View v, <span class="keyword">long</span> duration, <span class="keyword">int</span> visibility)</span> </span>&#123;</div><div class="line">       AlphaAnimation alphaAnimation = (visibility == View.VISIBLE)</div><div class="line">               ? <span class="keyword">new</span> AlphaAnimation(<span class="number">0f</span>, <span class="number">1f</span>)</div><div class="line">               : <span class="keyword">new</span> AlphaAnimation(<span class="number">1f</span>, <span class="number">0f</span>);</div><div class="line"></div><div class="line">       alphaAnimation.setDuration(duration);</div><div class="line">       alphaAnimation.setFillAfter(<span class="keyword">true</span>);</div><div class="line">       v.startAnimation(alphaAnimation);</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<p>自动滑动动画, 当到一定比例时展开或关闭.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 设置自动滑动的动画效果</span></div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initParallaxValues</span><span class="params">()</span> </span>&#123;</div><div class="line">      CollapsingToolbarLayout.LayoutParams petDetailsLp =</div><div class="line">              (CollapsingToolbarLayout.LayoutParams) mIvPlaceholder.getLayoutParams();</div><div class="line"></div><div class="line">      CollapsingToolbarLayout.LayoutParams petBackgroundLp =</div><div class="line">              (CollapsingToolbarLayout.LayoutParams) mFlTitleContainer.getLayoutParams();</div><div class="line"></div><div class="line">      petDetailsLp.setParallaxMultiplier(<span class="number">0.9f</span>);</div><div class="line">      petBackgroundLp.setParallaxMultiplier(<span class="number">0.3f</span>);</div><div class="line"></div><div class="line">      mIvPlaceholder.setLayoutParams(petDetailsLp);</div><div class="line">      mFlTitleContainer.setLayoutParams(petBackgroundLp);</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>最终逻辑</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 控制ToolBar的变量</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">float</span> PERCENTAGE_TO_SHOW_TITLE_AT_TOOLBAR = <span class="number">0.9f</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">float</span> PERCENTAGE_TO_HIDE_TITLE_DETAILS = <span class="number">0.3f</span>;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> ALPHA_ANIMATIONS_DURATION = <span class="number">200</span>;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> mIsTheTitleVisible = <span class="keyword">false</span>;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> mIsTheTitleContainerVisible = <span class="keyword">true</span>;</div><div class="line"></div><div class="line">    <span class="meta">@Bind</span>(R.id.main_iv_placeholder)</div><div class="line">    ImageView mIvPlaceholder; <span class="comment">// 大图片</span></div><div class="line"></div><div class="line">    <span class="meta">@Bind</span>(R.id.main_ll_title_container)</div><div class="line">    LinearLayout mLlTitleContainer; <span class="comment">// Title的LinearLayout</span></div><div class="line"></div><div class="line">    <span class="meta">@Bind</span>(R.id.main_fl_title)</div><div class="line">    FrameLayout mFlTitleContainer; <span class="comment">// Title的FrameLayout</span></div><div class="line"></div><div class="line">    <span class="meta">@Bind</span>(R.id.main_abl_app_bar)</div><div class="line">    AppBarLayout mAblAppBar; <span class="comment">// 整个可以滑动的AppBar</span></div><div class="line"></div><div class="line">    <span class="meta">@Bind</span>(R.id.main_tv_toolbar_title)</div><div class="line">    TextView mTvToolbarTitle; <span class="comment">// 标题栏Title</span></div><div class="line"></div><div class="line">    <span class="meta">@Bind</span>(R.id.main_tb_toolbar)</div><div class="line">    Toolbar mTbToolbar; <span class="comment">// 工具栏</span></div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        ButterKnife.bind(<span class="keyword">this</span>);</div><div class="line"></div><div class="line">        mTbToolbar.setTitle(<span class="string">""</span>);</div><div class="line"></div><div class="line">        <span class="comment">// AppBar的监听</span></div><div class="line">        mAblAppBar.addOnOffsetChangedListener(<span class="keyword">new</span> AppBarLayout.OnOffsetChangedListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onOffsetChanged</span><span class="params">(AppBarLayout appBarLayout, <span class="keyword">int</span> verticalOffset)</span> </span>&#123;</div><div class="line">                <span class="keyword">int</span> maxScroll = appBarLayout.getTotalScrollRange();</div><div class="line">                <span class="keyword">float</span> percentage = (<span class="keyword">float</span>) Math.abs(verticalOffset) / (<span class="keyword">float</span>) maxScroll;</div><div class="line">                handleAlphaOnTitle(percentage);</div><div class="line">                handleToolbarTitleVisibility(percentage);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">        initParallaxValues(); <span class="comment">// 自动滑动效果</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 设置自动滑动的动画效果</span></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initParallaxValues</span><span class="params">()</span> </span>&#123;</div><div class="line">        CollapsingToolbarLayout.LayoutParams petDetailsLp =</div><div class="line">                (CollapsingToolbarLayout.LayoutParams) mIvPlaceholder.getLayoutParams();</div><div class="line"></div><div class="line">        CollapsingToolbarLayout.LayoutParams petBackgroundLp =</div><div class="line">                (CollapsingToolbarLayout.LayoutParams) mFlTitleContainer.getLayoutParams();</div><div class="line"></div><div class="line">        petDetailsLp.setParallaxMultiplier(<span class="number">0.9f</span>);</div><div class="line">        petBackgroundLp.setParallaxMultiplier(<span class="number">0.3f</span>);</div><div class="line"></div><div class="line">        mIvPlaceholder.setLayoutParams(petDetailsLp);</div><div class="line">        mFlTitleContainer.setLayoutParams(petBackgroundLp);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 处理ToolBar的显示</span></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">handleToolbarTitleVisibility</span><span class="params">(<span class="keyword">float</span> percentage)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (percentage &gt;= PERCENTAGE_TO_SHOW_TITLE_AT_TOOLBAR) &#123;</div><div class="line">            <span class="keyword">if</span> (!mIsTheTitleVisible) &#123;</div><div class="line">                startAlphaAnimation(mTvToolbarTitle, ALPHA_ANIMATIONS_DURATION, View.VISIBLE);</div><div class="line">                mIsTheTitleVisible = <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">if</span> (mIsTheTitleVisible) &#123;</div><div class="line">                startAlphaAnimation(mTvToolbarTitle, ALPHA_ANIMATIONS_DURATION, View.INVISIBLE);</div><div class="line">                mIsTheTitleVisible = <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 控制Title的显示</span></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">handleAlphaOnTitle</span><span class="params">(<span class="keyword">float</span> percentage)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (percentage &gt;= PERCENTAGE_TO_HIDE_TITLE_DETAILS) &#123;</div><div class="line">            <span class="keyword">if</span> (mIsTheTitleContainerVisible) &#123;</div><div class="line">                startAlphaAnimation(mLlTitleContainer, ALPHA_ANIMATIONS_DURATION, View.INVISIBLE);</div><div class="line">                mIsTheTitleContainerVisible = <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">if</span> (!mIsTheTitleContainerVisible) &#123;</div><div class="line">                startAlphaAnimation(mLlTitleContainer, ALPHA_ANIMATIONS_DURATION, View.VISIBLE);</div><div class="line">                mIsTheTitleContainerVisible = <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 设置渐变的动画</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">startAlphaAnimation</span><span class="params">(View v, <span class="keyword">long</span> duration, <span class="keyword">int</span> visibility)</span> </span>&#123;</div><div class="line">        AlphaAnimation alphaAnimation = (visibility == View.VISIBLE)</div><div class="line">                ? <span class="keyword">new</span> AlphaAnimation(<span class="number">0f</span>, <span class="number">1f</span>)</div><div class="line">                : <span class="keyword">new</span> AlphaAnimation(<span class="number">1f</span>, <span class="number">0f</span>);</div><div class="line"></div><div class="line">        alphaAnimation.setDuration(duration);</div><div class="line">        alphaAnimation.setFillAfter(<span class="keyword">true</span>);</div><div class="line">        v.startAnimation(alphaAnimation);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样联动效果就已经显示出来了, 在AppBar中Toolbar和Title之间的关系, 符合Material的风格, 给用户更多的体验. 既然已经集成到HelloWorld中, 说明Android是极力推荐使用CoordinatorLayout这种风格的.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/android-coordinatorLayout/" rel="tag">#android coordinatorLayout</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/25/coordinatorLayout/" rel="next" title="coordinatorLayout">
+                <i class="fa fa-chevron-left"></i> coordinatorLayout
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/01/Retrofit请求参数注解字段说明/" rel="prev" title="Retrofit请求参数注解字段说明">
+                Retrofit请求参数注解字段说明 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Pandl" />
+          <p class="site-author-name" itemprop="name">Pandl</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CoordinatorLayout布局的使用"><span class="nav-number">1.</span> <span class="nav-text">CoordinatorLayout布局的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备"><span class="nav-number">1.1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#页面"><span class="nav-number">1.2.</span> <span class="nav-text">页面</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑"><span class="nav-number">2.</span> <span class="nav-text">逻辑</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Pandl</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
