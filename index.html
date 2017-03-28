@@ -246,6 +246,133 @@
             
               
                 
+                <a class="post-title-link" href="/2017/03/28/一个APP从启动到主页面显示经历了哪些过程/" itemprop="url">
+                  һ��APP����������ҳ����ʾ��������Щ����
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-28T16:47:03+08:00" content="2017-03-28">
+              2017-03-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/android/" itemprop="url" rel="index">
+                    <span itemprop="name">android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>������ͼ�Ĳ�ï����ʽ�򵥽���һ��APP����������ҳ����ʾ��������Щ���̣��Լ�ʵ�ֵ�ԭ���������ܾ���Դ�룬��������һ���������ܡ�</p>
+</blockquote>
+<h3 id="һ�����̸���"><a href="#һ�����̸���" class="headerlink" title="һ�����̸���"></a>һ�����̸���</h3><p><img src="http://onilby45v.bkt.clouddn.com/b80007e.jpg" alt="enter image description here"></p>
+<h4 id="�������̣�"><a href="#�������̣�" class="headerlink" title="�������̣�"></a>�������̣�</h4><p>�ٵ�������Appͼ�꣬Launcher���̲���Binder IPC��system_server���̷���startActivity������</p>
+<p>��system_server���̽��յ�����������zygote���̷��ʹ������̵�������</p>
+<p>��Zygote����fork���µ��ӽ��̣���App���̣�</p>
+<p>��App���̣�ͨ��Binder IPC��sytem_server���̷���attachApplication������</p>
+<p>��system_server�������յ������󣬽���һϵ��׼������������ͨ��binder IPC��App���̷���scheduleLaunchActivity������</p>
+<p>��App���̵�binder�̣߳�ApplicationThread�����յ���������ͨ��handler�����̷߳���LAUNCH_ACTIVITY��Ϣ��</p>
+<p>�����߳����յ�Message����ͨ���������ƴ���Ŀ��Activity�����ص�Activity.onCreate()�ȷ�����</p>
+<p>�ൽ�ˣ�App����ʽ��������ʼ����Activity�������ڣ�ִ����onCreate/onStart/onResume������UI��Ⱦ�����������Կ���App�������档</p>
+<p>������һЩ�в����򵥽�����һ��APP��������ҳ����ʾ�Ĺ��̣�������Щ�����е�һЩ���￴����Щ�£�ʲô��Launcher��ʲô��zygote��ʲô��applicationThread…..</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/03/28/一个APP从启动到主页面显示经历了哪些过程/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/03/06/RxJava/" itemprop="url">
                   RxJava小结
                 </a>
@@ -1193,122 +1320,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/17/android通用框架之mvp/" itemprop="url">
-                  android通用框架之mvp
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-17T14:43:25+08:00" content="2016-10-17">
-              2016-10-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/android/" itemprop="url" rel="index">
-                    <span itemprop="name">android</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="MVP模式"><a href="#MVP模式" class="headerlink" title="MVP模式"></a>MVP模式</h1><h3 id="MVP模式简介"><a href="#MVP模式简介" class="headerlink" title="MVP模式简介"></a>MVP模式简介</h3><blockquote>
-<p>MVP 是从经典的模式MVC演变而来，它们的基本思想有相通的地方：Controller/Presenter负责逻辑的处理，Model提供数据，View负责显示。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/17/android通用框架之mvp/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/10/17/WebView拦截/" itemprop="url">
                   android webview 拦截请求
                 </a>
@@ -1406,6 +1417,10 @@
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1444,7 +1459,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

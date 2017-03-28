@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="android," />
+  <meta name="keywords" content="dada, android" />
 
 
 
@@ -84,22 +84,12 @@
 
 
 
-<meta name="description" content="MVP模式MVP模式简介
-MVP 是从经典的模式MVC演变而来，它们的基本思想有相通的地方：Controller/Presenter负责逻辑的处理，Model提供数据，View负责显示。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="android通用框架之mvp">
-<meta property="og:url" content="http://yoursite.com/2016/10/17/android通用框架之mvp/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Android心得小记">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="Android心得小记">
-<meta property="og:description" content="MVP模式MVP模式简介
-MVP 是从经典的模式MVC演变而来，它们的基本思想有相通的地方：Controller/Presenter负责逻辑的处理，Model提供数据，View负责显示。">
-<meta property="og:image" content="http://of6m1re0v.bkt.clouddn.com/mvc.jpg">
-<meta property="og:image" content="http://of6m1re0v.bkt.clouddn.com/mvp.jpg">
-<meta property="og:updated_time" content="2016-10-20T01:49:38.386Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="android通用框架之mvp">
-<meta name="twitter:description" content="MVP模式MVP模式简介
-MVP 是从经典的模式MVC演变而来，它们的基本思想有相通的地方：Controller/Presenter负责逻辑的处理，Model提供数据，View负责显示。">
-<meta name="twitter:image" content="http://of6m1re0v.bkt.clouddn.com/mvc.jpg">
+<meta name="twitter:title" content="Android心得小记">
 
 
 
@@ -120,10 +110,10 @@ MVP 是从经典的模式MVC演变而来，它们的基本思想有相通的地�
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/10/17/android通用框架之mvp/"/>
+  <link rel="canonical" href="http://yoursite.com/page/2/"/>
 
 
-  <title> android通用框架之mvp | Android心得小记 </title>
+  <title> Android心得小记 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -144,7 +134,9 @@ MVP 是从经典的模式MVC演变而来，它们的基本思想有相通的地�
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left 
+   page-home 
+ ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -231,9 +223,9 @@ MVP 是从经典的模式MVC演变而来，它们的基本思想有相通的地�
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
   
@@ -253,7 +245,10 @@ MVP 是从经典的模式MVC演变而来，它们的基本思想有相通的地�
             
             
               
-                android通用框架之mvp
+                
+                <a class="post-title-link" href="/2016/10/17/android通用框架之mvp/" itemprop="url">
+                  android通用框架之mvp
+                </a>
               
             
           </h1>
@@ -312,70 +307,47 @@ MVP 是从经典的模式MVC演变而来，它们的基本思想有相通的地�
       
 
       
-        <h1 id="MVP模式"><a href="#MVP模式" class="headerlink" title="MVP模式"></a>MVP模式</h1><h3 id="MVP模式简介"><a href="#MVP模式简介" class="headerlink" title="MVP模式简介"></a>MVP模式简介</h3><blockquote>
-<p>MVP 是从经典的模式MVC演变而来，它们的基本思想有相通的地方：Controller/Presenter负责逻辑的处理，Model提供数据，View负责显示。<br><a id="more"></a></p>
-</blockquote>
-<h3 id="MVC和MVP的区别？"><a href="#MVC和MVP的区别？" class="headerlink" title="MVC和MVP的区别？"></a>MVC和MVP的区别？</h3><blockquote>
-<p>作为一种新的模式，MVP与MVC有着一个重大的区别：在MVP中View并不直接使用Model，它们之间的通信是通过Presenter (MVC中的Controller)来进行的，所有的交互都发生在Presenter内部，而在MVC中View会直接从Model中读取数据而不是通过 Controller。<br>在MVC里，View是可以直接访问Model的！从而，View里会包含Model信息，不可避免的还要包括一些业务逻辑。 在MVC模型里，更关注的Model的不变，而同时有多个对Model的不同显示，即View。所以，在MVC模型里，Model不依赖于View，但是View是依赖于Model的。不仅如此，因为有一些业务逻辑在View里实现了，导致要更改View也是比较困难的，至少那些业务逻辑是无法重用的。<br>虽然 MVC 中的 View 的确“可以”访问 Model，但是我们不建议在 View 中依赖 Model，而是要求尽可能把所有业务逻辑都放在 Controller 中处理，而 View 只和 Controller 交互。上面的这段文字不知是什么水平的开发者编辑的，基本逻辑都不清楚。</p>
-</blockquote>
-<p><img src="http://of6m1re0v.bkt.clouddn.com/mvc.jpg" alt="enter image description here">                            <img src="http://of6m1re0v.bkt.clouddn.com/mvp.jpg" alt="enter image description here"></p>
-<h3 id="MVP的优点"><a href="#MVP的优点" class="headerlink" title="MVP的优点"></a>MVP的优点</h3><blockquote>
-<p>1、模型与视图完全分离，我们可以修改视图而不影响模型<br>2、可以更高效地使用模型，因为所有的交互都发生在一个地方——Presenter内部<br>3、我们可以将一个Presenter用于多个视图，而不需要改变Presenter的逻辑。这个特性非常的有用，因为视图的变化总是比模型的变化频繁。<br>4、如果我们把逻辑放在Presenter中，那么我们就可以脱离用户接口来测试这些逻辑（单元测试）</p>
-</blockquote>
-
+        
+          <h1 id="MVP模式"><a href="#MVP模式" class="headerlink" title="MVP模式"></a>MVP模式</h1><h3 id="MVP模式简介"><a href="#MVP模式简介" class="headerlink" title="MVP模式简介"></a>MVP模式简介</h3><blockquote>
+<p>MVP 是从经典的模式MVC演变而来，它们的基本思想有相通的地方：Controller/Presenter负责逻辑的处理，Model提供数据，View负责显示。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/17/android通用框架之mvp/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
       
     </div>
 
     <div>
       
-        
-
-      
     </div>
 
     <div>
-      
-        
-
       
     </div>
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/android/" rel="tag">#android</a>
-          
-        </div>
+
       
 
       
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/17/WebView拦截/" rel="prev" title="android webview 拦截请求">
-                android webview 拦截请求 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
 
 
           </div>
@@ -383,10 +355,6 @@ MVP 是从经典的模式MVC演变而来，它们的基本思想有相通的地�
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -406,17 +374,8 @@ MVP 是从经典的模式MVC演变而来，它们的基本思想有相通的地�
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.jpg"
@@ -466,17 +425,6 @@ MVP 是从经典的模式MVC演变而来，它们的基本思想有相通的地�
 
       </section>
 
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MVP模式"><span class="nav-number">1.</span> <span class="nav-text">MVP模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MVP模式简介"><span class="nav-number">1.0.1.</span> <span class="nav-text">MVP模式简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MVC和MVP的区别？"><span class="nav-number">1.0.2.</span> <span class="nav-text">MVC和MVP的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MVP的优点"><span class="nav-number">1.0.3.</span> <span class="nav-text">MVP的优点</span></a></li></ol></li></ol></li></ol></div>
-            
-          </div>
-        </section>
       
 
     </div>
@@ -580,10 +528,6 @@ MVP 是从经典的模式MVC演变而来，它们的基本思想有相通的地�
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
-
-
 
   
 
