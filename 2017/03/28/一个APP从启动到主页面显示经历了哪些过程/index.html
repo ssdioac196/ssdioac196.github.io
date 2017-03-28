@@ -84,18 +84,16 @@
 
 
 
-<meta name="description" content="������ͼ�Ĳ�ï����ʽ�򵥽���һ��APP����������ҳ����ʾ��������Щ���̣��Լ�ʵ�ֵ�ԭ���������ܾ���Դ�룬��������һ���������ܡ�
+<meta name="description" content="本文以图文并茂的形式简单介绍一个APP从启动到主页面显示经历了哪些流程，以及实现的原理。不介绍具体源码，仅仅构建一个大体框架。
 
-һ�����̸���
-�������̣��ٵ�������Appͼ�꣬Launcher���̲���Binder IPC��system_server���̷���startActivity">
+一、流程概述">
 <meta property="og:type" content="article">
-<meta property="og:title" content="һ��APP����������ҳ����ʾ��������Щ����">
+<meta property="og:title" content="一个APP从启动到主页面显示经历了哪些过程">
 <meta property="og:url" content="http://yoursite.com/2017/03/28/一个APP从启动到主页面显示经历了哪些过程/index.html">
 <meta property="og:site_name" content="Android心得小记">
-<meta property="og:description" content="������ͼ�Ĳ�ï����ʽ�򵥽���һ��APP����������ҳ����ʾ��������Щ���̣��Լ�ʵ�ֵ�ԭ���������ܾ���Դ�룬��������һ���������ܡ�
+<meta property="og:description" content="本文以图文并茂的形式简单介绍一个APP从启动到主页面显示经历了哪些流程，以及实现的原理。不介绍具体源码，仅仅构建一个大体框架。
 
-һ�����̸���
-�������̣��ٵ�������Appͼ�꣬Launcher���̲���Binder IPC��system_server���̷���startActivity">
+一、流程概述">
 <meta property="og:image" content="http://onilby45v.bkt.clouddn.com/b80007e.jpg">
 <meta property="og:image" content="http://onilby45v.bkt.clouddn.com/9b93312.jpg">
 <meta property="og:image" content="http://onilby45v.bkt.clouddn.com/480248e.jpg">
@@ -106,13 +104,12 @@
 <meta property="og:image" content="http://onilby45v.bkt.clouddn.com/1.jpg">
 <meta property="og:image" content="http://onilby45v.bkt.clouddn.com/2.jpg">
 <meta property="og:image" content="http://onilby45v.bkt.clouddn.com/5.jpg">
-<meta property="og:updated_time" content="2017-03-28T09:16:41.848Z">
+<meta property="og:updated_time" content="2017-03-28T09:21:04.288Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="һ��APP����������ҳ����ʾ��������Щ����">
-<meta name="twitter:description" content="������ͼ�Ĳ�ï����ʽ�򵥽���һ��APP����������ҳ����ʾ��������Щ���̣��Լ�ʵ�ֵ�ԭ���������ܾ���Դ�룬��������һ���������ܡ�
+<meta name="twitter:title" content="一个APP从启动到主页面显示经历了哪些过程">
+<meta name="twitter:description" content="本文以图文并茂的形式简单介绍一个APP从启动到主页面显示经历了哪些流程，以及实现的原理。不介绍具体源码，仅仅构建一个大体框架。
 
-һ�����̸���
-�������̣��ٵ�������Appͼ�꣬Launcher���̲���Binder IPC��system_server���̷���startActivity">
+一、流程概述">
 <meta name="twitter:image" content="http://onilby45v.bkt.clouddn.com/b80007e.jpg">
 
 
@@ -137,7 +134,7 @@
   <link rel="canonical" href="http://yoursite.com/2017/03/28/一个APP从启动到主页面显示经历了哪些过程/"/>
 
 
-  <title> һ��APP����������ҳ����ʾ��������Щ���� | Android心得小记 </title>
+  <title> 一个APP从启动到主页面显示经历了哪些过程 | Android心得小记 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -267,7 +264,7 @@
             
             
               
-                һ��APP����������ҳ����ʾ��������Щ����
+                一个APP从启动到主页面显示经历了哪些过程
               
             
           </h1>
@@ -327,120 +324,120 @@
 
       
         <blockquote>
-<p>������ͼ�Ĳ�ï����ʽ�򵥽���һ��APP����������ҳ����ʾ��������Щ���̣��Լ�ʵ�ֵ�ԭ���������ܾ���Դ�룬��������һ���������ܡ�</p>
+<p>本文以图文并茂的形式简单介绍一个APP从启动到主页面显示经历了哪些流程，以及实现的原理。不介绍具体源码，仅仅构建一个大体框架。</p>
 </blockquote>
-<h3 id="һ�����̸���"><a href="#һ�����̸���" class="headerlink" title="һ�����̸���"></a>һ�����̸���</h3><p><img src="http://onilby45v.bkt.clouddn.com/b80007e.jpg" alt="enter image description here"></p>
-<h4 id="�������̣�"><a href="#�������̣�" class="headerlink" title="�������̣�"></a>�������̣�</h4><p>�ٵ�������Appͼ�꣬Launcher���̲���Binder IPC��system_server���̷���startActivity������</p>
-<p>��system_server���̽��յ�����������zygote���̷��ʹ������̵�������</p>
-<p>��Zygote����fork���µ��ӽ��̣���App���̣�</p>
-<p>��App���̣�ͨ��Binder IPC��sytem_server���̷���attachApplication������</p>
-<p>��system_server�������յ������󣬽���һϵ��׼������������ͨ��binder IPC��App���̷���scheduleLaunchActivity������</p>
-<p>��App���̵�binder�̣߳�ApplicationThread�����յ���������ͨ��handler�����̷߳���LAUNCH_ACTIVITY��Ϣ��</p>
-<p>�����߳����յ�Message����ͨ���������ƴ���Ŀ��Activity�����ص�Activity.onCreate()�ȷ�����</p>
-<p>�ൽ�ˣ�App����ʽ��������ʼ����Activity�������ڣ�ִ����onCreate/onStart/onResume������UI��Ⱦ�����������Կ���App�������档</p>
-<p>������һЩ�в����򵥽�����һ��APP��������ҳ����ʾ�Ĺ��̣�������Щ�����е�һЩ���￴����Щ�£�ʲô��Launcher��ʲô��zygote��ʲô��applicationThread…..</p>
+<h3 id="一、流程概述"><a href="#一、流程概述" class="headerlink" title="一、流程概述"></a>一、流程概述</h3><p><img src="http://onilby45v.bkt.clouddn.com/b80007e.jpg" alt="enter image description here"></p>
 <a id="more"></a>
-<p>��������һһ����</p>
-<h3 id="�������ۻ���"><a href="#�������ۻ���" class="headerlink" title="�������ۻ���"></a>�������ۻ���</h3><p><strong>1. zygote</strong></p>
-<p>���ߣ�Ruheng<br>��ַ��<a href="http://www.jianshu.com/p/a72c5ccbd150" target="_blank" rel="external">http://www.jianshu.com/p/a72c5ccbd150</a><br>����Ruheng�ĵڶ�ƪ���£���һƪ����Ϊһ��������HTTP��������Ӧ�漰����Щ֪ʶ��<br>�������������������ĵڶ�ƪ���¡�һ��APP����������ҳ����ʾ��������Щ���̣���</p>
-<p>������ͼ�Ĳ�ï����ʽ�򵥽���һ��APP����������ҳ����ʾ��������Щ���̣��Լ�ʵ�ֵ�ԭ���������ܾ���Դ�룬��������һ���������ܡ�<br>һ�����̸���</p>
-<p>�������̣�</p>
-<p>�ٵ�������Appͼ�꣬Launcher���̲���Binder IPC��system_server���̷���startActivity������</p>
-<p>��system_server���̽��յ�����������zygote���̷��ʹ������̵�������</p>
-<p>��Zygote����fork���µ��ӽ��̣���App���̣�</p>
-<p>��App���̣�ͨ��Binder IPC��sytem_server���̷���attachApplication������</p>
-<p>��system_server�������յ������󣬽���һϵ��׼������������ͨ��binder IPC��App���̷���scheduleLaunchActivity������</p>
-<p>��App���̵�binder�̣߳�ApplicationThread�����յ���������ͨ��handler�����̷߳���LAUNCH_ACTIVITY��Ϣ��</p>
-<p>�����߳����յ�Message����ͨ���������ƴ���Ŀ��Activity�����ص�Activity.onCreate()�ȷ�����</p>
-<p>�ൽ�ˣ�App����ʽ��������ʼ����Activity�������ڣ�ִ����onCreate/onStart/onResume������UI��Ⱦ�����������Կ���App�������档</p>
-<p>������һЩ�в����򵥽�����һ��APP��������ҳ����ʾ�Ĺ��̣�������Щ�����е�һЩ���￴����Щ�£�ʲô��Launcher��ʲô��zygote��ʲô��applicationThread…..</p>
-<p>��������һһ���ܡ�</p>
-<p>�������ۻ���</p>
+<h4 id="启动流程："><a href="#启动流程：" class="headerlink" title="启动流程："></a>启动流程：</h4><p>①点击桌面App图标，Launcher进程采用Binder IPC向system_server进程发起startActivity请求；</p>
+<p>②system_server进程接收到请求后，向zygote进程发送创建进程的请求；</p>
+<p>③Zygote进程fork出新的子进程，即App进程；</p>
+<p>④App进程，通过Binder IPC向sytem_server进程发起attachApplication请求；</p>
+<p>⑤system_server进程在收到请求后，进行一系列准备工作后，再通过binder IPC向App进程发送scheduleLaunchActivity请求；</p>
+<p>⑥App进程的binder线程（ApplicationThread）在收到请求后，通过handler向主线程发送LAUNCH_ACTIVITY消息；</p>
+<p>⑦主线程在收到Message后，通过发射机制创建目标Activity，并回调Activity.onCreate()等方法。</p>
+<p>⑧到此，App便正式启动，开始进入Activity生命周期，执行完onCreate/onStart/onResume方法，UI渲染结束后便可以看到App的主界面。</p>
+<p>上面的一些列步骤简单介绍了一个APP启动到主页面显示的过程，可能这些流程中的一些术语看的有些懵，什么是Launcher，什么是zygote，什么是applicationThread…..</p>
+<p>下面我们一一介绍</p>
+<h3 id="二、理论基础"><a href="#二、理论基础" class="headerlink" title="二、理论基础"></a>二、理论基础</h3><p><strong>1. zygote</strong></p>
+<p>作者：Ruheng<br>地址：<a href="http://www.jianshu.com/p/a72c5ccbd150" target="_blank" rel="external">http://www.jianshu.com/p/a72c5ccbd150</a><br>这是Ruheng的第二篇文章，第一篇文章为一次完整的HTTP请求与响应涉及了哪些知识？<br>下面让我们来看看他的第二篇文章《一个APP从启动到主页面显示经历了哪些过程？》</p>
+<p>本文以图文并茂的形式简单介绍一个APP从启动到主页面显示经历了哪些流程，以及实现的原理。不介绍具体源码，仅仅构建一个大体框架。<br>一、流程概述</p>
+<p>启动流程：</p>
+<p>①点击桌面App图标，Launcher进程采用Binder IPC向system_server进程发起startActivity请求；</p>
+<p>②system_server进程接收到请求后，向zygote进程发送创建进程的请求；</p>
+<p>③Zygote进程fork出新的子进程，即App进程；</p>
+<p>④App进程，通过Binder IPC向sytem_server进程发起attachApplication请求；</p>
+<p>⑤system_server进程在收到请求后，进行一系列准备工作后，再通过binder IPC向App进程发送scheduleLaunchActivity请求；</p>
+<p>⑥App进程的binder线程（ApplicationThread）在收到请求后，通过handler向主线程发送LAUNCH_ACTIVITY消息；</p>
+<p>⑦主线程在收到Message后，通过发射机制创建目标Activity，并回调Activity.onCreate()等方法。</p>
+<p>⑧到此，App便正式启动，开始进入Activity生命周期，执行完onCreate/onStart/onResume方法，UI渲染结束后便可以看到App的主界面。</p>
+<p>上面的一些列步骤简单介绍了一个APP启动到主页面显示的过程，可能这些流程中的一些术语看的有些懵，什么是Launcher，什么是zygote，什么是applicationThread…..</p>
+<p>下面我们一一介绍。</p>
+<p>二、理论基础</p>
 <p><strong>1.zygote</strong></p>
-<p>zygote��Ϊ���ܾ��ѡ���Android�ǻ���Linuxϵͳ�ģ�����Linux�У����еĽ��̶�����init����ֱ�ӻ����Ǽ���fork�����ģ�zygote����Ҳ�����⡣</p>
-<p>��Androidϵͳ���棬zygote��һ�����̵����֡�Android�ǻ���Linux System�ģ��������ֻ�������ʱ����Linux���ں˼�������֮���ͻ�����һ���С�init���Ľ��̡���Linux System���棬���еĽ��̶�����init����fork�����ģ����ǵ�zygote����Ҳ�����⡣</p>
-<p>���Ƕ�֪����ÿһ��App��ʵ����</p>
+<p>zygote意为“受精卵“。Android是基于Linux系统的，而在Linux中，所有的进程都是由init进程直接或者是间接fork出来的，zygote进程也不例外。</p>
+<p>在Android系统里面，zygote是一个进程的名字。Android是基于Linux System的，当你的手机开机的时候，Linux的内核加载完成之后就会启动一个叫“init“的进程。在Linux System里面，所有的进程都是由init进程fork出来的，我们的zygote进程也不例外。</p>
+<p>我们都知道，每一个App其实都是</p>
 <ul>
-<li><strong>һ��������dalvik������</strong></li>
-<li><strong>һ�������Ľ���</strong></li>
+<li><strong>一个单独的dalvik虚拟机</strong></li>
+<li><strong>一个单独的进程</strong></li>
 </ul>
-<p>���Ե�ϵͳ�����ĵ�һ��zygote��������֮��������֮���ٿ���App�����൱�ڿ���һ���µĽ��̡���Ϊ��ʵ����Դ���ú͸����������ٶȣ�Androidϵͳ�����½��̵ķ�ʽ����ͨ��fork��һ��zygote����ʵ�ֵġ�����˵�����˵�һ��zygote���̣�����Ӧ�����ڵĽ��̶���zygote���ӽ��̣�����������Ϊʲô�������̽С��ܾ��ѡ��˰ɣ���Ϊ������һ���ܾ���һ�������ܿ��ٵķ��ѣ����Ҳ����Ŵ�����һ����ϸ����</p>
+<p>所以当系统里面的第一个zygote进程运行之后，在这之后再开启App，就相当于开启一个新的进程。而为了实现资源共用和更快的启动速度，Android系统开启新进程的方式，是通过fork第一个zygote进程实现的。所以说，除了第一个zygote进程，其他应用所在的进程都是zygote的子进程，这下你明白为什么这个进程叫“受精卵”了吧？因为就像是一个受精卵一样，它能快速的分裂，并且产生遗传物质一样的细胞！</p>
 <p><strong>2.system_server</strong></p>
-<p>SystemServerҲ��һ�����̣���������zygote����fork�����ġ�</p>
-<p>֪����SystemServer�ı��ʣ����Ƕ����Ͳ���̫İ���ˣ�����������Android Framework���������ǳ���Ҫ�Ľ���֮һ��������һ�����̾���������zygote���̡�</p>
-<p>Ϊʲô˵SystemServer�ǳ���Ҫ�أ���Ϊϵͳ������Ҫ�ķ��������������������濪���ģ�����<br>ActivityManagerService��PackageManagerService��WindowManagerService�ȵȡ�</p>
+<p>SystemServer也是一个进程，而且是由zygote进程fork出来的。</p>
+<p>知道了SystemServer的本质，我们对它就不算太陌生了，这个进程是Android Framework里面两大非常重要的进程之一——另外一个进程就是上面的zygote进程。</p>
+<p>为什么说SystemServer非常重要呢？因为系统里面重要的服务都是在这个进程里面开启的，比如<br>ActivityManagerService、PackageManagerService、WindowManagerService等等。</p>
 <p><strong>3.ActivityManagerService</strong></p>
-<p>ActivityManagerService������AMS�������˶��󣬸���ϵͳ������Activity���������ڡ�</p>
-<p>ActivityManagerService���г�ʼ����ʱ������ȷ��������SystemServer���̿�����ʱ�򣬾ͻ���ʼ��ActivityManagerService��</p>
-<p><strong>����������Androidϵͳ�����ķ������Ϳͻ��˵ĸ��</strong></p>
-<p>��ʵ�������ͻ��˵ĸ������������Web�����У���Android�Ŀ��������У�ʹ�õ�Ҳ����һ��ģʽ����������ָ�ľ�������App���õ�ϵͳ���񣬱������������ᵽ��ActivityManagerService����ǰ���ᵽ��PackageManagerService��WindowManagerService�ȵȣ���Щ������ϵͳ�����Ǳ����е�App���õģ���ĳ��App��ʵ��ĳ��������ʱ����Ҫ������Щϵͳ���񣬱�����������һ��App����ô����֪���˰�����MainActivity����֮���Ϳ��Դ���</p>
+<p>ActivityManagerService，简称AMS，服务端对象，负责系统中所有Activity的生命周期。</p>
+<p>ActivityManagerService进行初始化的时机很明确，就是在SystemServer进程开启的时候，就会初始化ActivityManagerService。</p>
+<p><strong>下面介绍下Android系统里面的服务器和客户端的概念。</strong></p>
+<p>其实服务器客户端的概念不仅仅存在于Web开发中，在Android的框架设计中，使用的也是这一种模式。服务器端指的就是所有App共用的系统服务，比如我们这里提到的ActivityManagerService，和前面提到的PackageManagerService、WindowManagerService等等，这些基础的系统服务是被所有的App公用的，当某个App想实现某个操作的时候，要告诉这些系统服务，比如你想打开一个App，那么我们知道了包名和MainActivity类名之后就可以打开</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_MAIN);  </div><div class="line">intent.addCategory(Intent.CATEGORY_LAUNCHER);              </div><div class="line">ComponentName cn = <span class="keyword">new</span> ComponentName(packageName, className);              </div><div class="line">intent.setComponent(cn);  </div><div class="line">startActivity(intent);</div></pre></td></tr></table></figure>
-<p>���ǣ����ǵ�Appͨ������startActivity()������ֱ�Ӵ�������һ��App������������ͨ��һϵ�еĵ��ã��������Ǹ���AMS˵������Ҫ��������App����֪������סַ�����֣������Ҵ򿪰ɣ���������AMS��֪ͨzygote������forkһ���½��̣����������ǵ�Ŀ��App�ġ�����������������Ҫ����һ��������һ��������������ҳ��ַ���͸���������Ȼ�����Ƿ���������Ҫ����Դ�ļ����͸��ͻ��˵ġ�</p>
-<p>֪����Android Framework�Ŀͻ��˷������ܹ�֮�������ǻ���Ҫ�˽�һ�����飬�Ǿ������ǵ�App��AMS(SystemServer����)����zygote���̷��������������Ľ��̣�����֮������ͨ���أ�</p>
+<p>但是，我们的App通过调用startActivity()并不能直接打开另外一个App，这个方法会通过一系列的调用，最后还是告诉AMS说：“我要打开这个App，我知道他的住址和名字，你帮我打开吧！”所以是AMS来通知zygote进程来fork一个新进程，来开启我们的目标App的。这就像是浏览器想要打开一个超链接一样，浏览器把网页地址发送给服务器，然后还是服务器把需要的资源文件发送给客户端的。</p>
+<p>知道了Android Framework的客户端服务器架构之后，我们还需要了解一件事情，那就是我们的App和AMS(SystemServer进程)还有zygote进程分属于三个独立的进程，他们之间如何通信呢？</p>
 <blockquote>
-<p>App��AMSͨ��Binder����IPCͨ�ţ�AMS(SystemServer����)��zygoteͨ��Socket����IPCͨ�š������������ܡ�</p>
+<p>App与AMS通过Binder进行IPC通信，AMS(SystemServer进程)与zygote通过Socket进行IPC通信。后面具体介绍。</p>
 </blockquote>
-<p><strong>��ôAMS��ʲô���أ�</strong>��ǰ������֪���ˣ�����������һ��App�Ļ�����ҪAMSȥ֪ͨzygote���̣�����֮�⣬��ʵ���е�Activity�Ŀ�������ͣ���رն���ҪAMS�����ƣ���������˵��AMS����ϵͳ������Activity���������ڡ�</p>
-<p>��Androidϵͳ�У��κ�һ��Activity������������AMS��Ӧ�ó������̣���Ҫ��ActivityThread���໥���������ɵġ�AMS����ͳһ����ϵͳ�����н��̵�Activity��������ÿ��Activity���������������������Ľ��̾��������ɡ�</p>
+<p><strong>那么AMS有什么用呢？</strong>在前面我们知道了，如果想打开一个App的话，需要AMS去通知zygote进程，除此之外，其实所有的Activity的开启、暂停、关闭都需要AMS来控制，所以我们说，AMS负责系统中所有Activity的生命周期。</p>
+<p>在Android系统中，任何一个Activity的启动都是由AMS和应用程序进程（主要是ActivityThread）相互配合来完成的。AMS服务统一调度系统中所有进程的Activity启动，而每个Activity的启动过程则由其所属的进程具体来完成。</p>
 <p><strong>4.Launcher</strong></p>
-<p>�����ǵ����ֻ������ϵ�ͼ����ʱ����App����Launcher��ʼ�����ˡ����ǣ�����û��˼����Launcher������һ��ʲô������</p>
-<p><strong>Launcher������Ҳ��һ��Ӧ�ó��򣬺����ǵ�Appһ����Ҳ�Ǽ̳���Activity</strong></p>
+<p>当我们点击手机桌面上的图标的时候，App就由Launcher开始启动了。但是，你有没有思考过Launcher到底是一个什么东西？</p>
+<p><strong>Launcher本质上也是一个应用程序，和我们的App一样，也是继承自Activity</strong></p>
 <p>packages/apps/Launcher2/src/com/android/launcher2/Launcher.java</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Launcher</span> <span class="keyword">extends</span> <span class="title">Activity</span></span></div><div class="line"> <span class="keyword">implements</span> <span class="title">View</span>.<span class="title">OnClickListener</span>, <span class="title">OnLongClickListener</span>, <span class="title">LauncherModel</span>.<span class="title">Callbacks</span>,                   </div><div class="line">    <span class="title">View</span>.<span class="title">OnTouchListener</span> &#123;</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
-<p>Launcherʵ���˵����������Ȼص��ӿڣ��������û������롣��Ȼ����ͨ��App����ô���ǵĿ�����������������Ȼ���ã����磬���ǵ���ͼ����ʱ��������ô������Ӧ���أ���׽ͼ�������¼���Ȼ��startActivity()���Ͷ�Ӧ��Intent�����£��ǵģ�LauncherҲ����ô���ģ�������ôeasy��</p>
-<p><strong>5.Instrumentation��ActivityThread</strong></p>
-<p>ÿ��Activity������Instrumentation������һ�����ã�������������ֻ������һ��Instrumentation������<br>Instrumentation�����������ķ�����������Application��Activity�йأ��������������ɶ�Application��Activity��ʼ�����������ڵĹ����ࡣInstrumentation����������Ҫ����Activity�������ڷ����ĵ��ø������벻������������˵��һ�����ܼҡ�</p>
-<p>ActivityThread������UI�̡߳�App��AMS��ͨ��Binder������Ϣ�ģ���ôActivityThread����ר����AMS���⽻�����ġ�</p>
+<p>Launcher实现了点击、长按等回调接口，来接收用户的输入。既然是普通的App，那么我们的开发经验在这里就仍然适用，比如，我们点击图标的时候，是怎么开启的应用呢？捕捉图标点击事件，然后startActivity()发送对应的Intent请求呗！是的，Launcher也是这么做的，就是这么easy！</p>
+<p><strong>5.Instrumentation和ActivityThread</strong></p>
+<p>每个Activity都持有Instrumentation对象的一个引用，但是整个进程只会存在一个Instrumentation对象。<br>Instrumentation这个类里面的方法大多数和Application和Activity有关，这个类就是完成对Application和Activity初始化和生命周期的工具类。Instrumentation这个类很重要，对Activity生命周期方法的调用根本就离不开他，他可以说是一个大管家。</p>
+<p>ActivityThread，就是UI线程。App和AMS是通过Binder传递信息的，那么ActivityThread就是专门与AMS的外交工作的。</p>
 <p>6.ApplicationThread</p>
-<p>ǰ�������Ѿ�֪����App�������Լ�Activity����ʾ����ҪAMS�Ŀ��ƣ���ô���Ǳ���Ҫ�ͷ����˵Ĺ�ͨ����������ͨ��˫���ġ�</p>
-<p><strong>�ͻ���–&gt;������</strong><br><img src="http://onilby45v.bkt.clouddn.com/9b93312.jpg" alt="enter image description here"></p>
-<p>�������ڼ̳���ͬ���Ĺ����ӿ��࣬ActivityManagerProxy�ṩ����ActivityManagerServiceһ���ĺ���ԭ�ͣ�ʹ�û��о�����Server�������ڱ��ػ���Զ�ˣ��Ӷ����Ը��ӷ����ĵ�����Щ��Ҫ��ϵͳ������</p>
-<p><strong>������–&gt;�ͻ���</strong></p>
-<p>����ͨ��Binderͨ�ţ������ǻ�������һ�ԣ�������ApplicationThread��ApplicationThreadProxy��</p>
+<p>前面我们已经知道了App的启动以及Activity的显示都需要AMS的控制，那么我们便需要和服务端的沟通，而这个沟通是双向的。</p>
+<p><strong>客户端–&gt;服务端</strong><br><img src="http://onilby45v.bkt.clouddn.com/9b93312.jpg" alt="enter image description here"></p>
+<p>而且由于继承了同样的公共接口类，ActivityManagerProxy提供了与ActivityManagerService一样的函数原型，使用户感觉不出Server是运行在本地还是远端，从而可以更加方便的调用这些重要的系统服务。</p>
+<p><strong>服务端–&gt;客户端</strong></p>
+<p>还是通过Binder通信，不过是换了另外一对，换成了ApplicationThread和ApplicationThreadProxy。</p>
 <p><img src="http://onilby45v.bkt.clouddn.com/480248e.jpg" alt="enter image description here"></p>
-<p>����Ҳ��ʵ������ͬ�Ľӿ�IApplicationThread</p>
+<p>他们也都实现了相同的接口IApplicationThread</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">ApplicationThread</span> <span class="keyword">extends</span> <span class="title">ApplicationThreadNative</span> </span>&#123;&#125;</div><div class="line"></div><div class="line">  <span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">ApplicationThreadNative</span> <span class="keyword">extends</span> <span class="title">Binder</span> <span class="keyword">implements</span> <span class="title">IApplicationThread</span></span>&#123;&#125;  </div><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">ApplicationThreadProxy</span> <span class="keyword">implements</span> <span class="title">IApplicationThread</span> </span>&#123;&#125;</div></pre></td></tr></table></figure>
-<p>����Binderͨ�ţ����Բο�����ƪ��������һ�£���������Binder���Ƶ�ԭ��,<a href="http://www.jianshu.com/p/4920c7781afe����AIDLʹ�ú�Binder�������⣬��ֻ��Ҫ����һƪ���ɡ�http://www.jianshu.com/p/e3293b8346ab" target="_blank" rel="external">http://www.jianshu.com/p/4920c7781afe����AIDLʹ�ú�Binder�������⣬��ֻ��Ҫ����һƪ���ɡ�http://www.jianshu.com/p/e3293b8346ab</a></p>
-<p>���ˣ�ǰ���������µ�һ���ѣ�������һ�����ʣ����ܲ�̫������û��ϵ��������������ͼ���ܡ�</p>
-<h3 id="������������"><a href="#������������" class="headerlink" title="������������"></a>������������</h3><p>####1.��������</p>
-<p>���ȴ�Launcher��startActivity()������ͨ��Binderͨ�ţ�����ActivityManagerService��startActivity������</p>
-<p>��һϵ�����ڣ���������startProcessLocked()�����������µĽ��̡�</p>
-<p>�۸÷�����ͨ��ǰ�潲����socketͨ�����ݲ�����Zygote���̡�Zygote��������������ZygoteInit.main()������ʵ����ActivityThread���������շ����½��̵�pid��</p>
-<p>�ܵ���ActivityThread.main()������ActivityThread�������ε���Looper.prepareLoop()��Looper.loop()��������Ϣѭ����</p>
-<p>������������ͼ����:</p>
+<p>关于Binder通信，可以参考这两篇文章理解一下：简单理解Binder机制的原理,<a href="http://www.jianshu.com/p/4920c7781afe关于AIDL使用和Binder机制详解，你只需要看这一篇即可。http://www.jianshu.com/p/e3293b8346ab" target="_blank" rel="external">http://www.jianshu.com/p/4920c7781afe关于AIDL使用和Binder机制详解，你只需要看这一篇即可。http://www.jianshu.com/p/e3293b8346ab</a></p>
+<p>好了，前面罗里吧嗦的一大堆，介绍了一堆名词，可能不太清楚，没关系，下面结合流程图介绍。</p>
+<h3 id="三、启动流程"><a href="#三、启动流程" class="headerlink" title="三、启动流程"></a>三、启动流程</h3><p>####1.创建进程</p>
+<p>①先从Launcher的startActivity()方法，通过Binder通信，调用ActivityManagerService的startActivity方法。</p>
+<p>②一系列折腾，最后调用startProcessLocked()方法来创建新的进程。</p>
+<p>③该方法会通过前面讲到的socket通道传递参数给Zygote进程。Zygote孵化自身。调用ZygoteInit.main()方法来实例化ActivityThread对象并最终返回新进程的pid。</p>
+<p>④调用ActivityThread.main()方法，ActivityThread随后依次调用Looper.prepareLoop()和Looper.loop()来开启消息循环。</p>
+<p>方法调用流程图如下:</p>
 <p><img src="http://onilby45v.bkt.clouddn.com/888eb8b.jpg" alt="enter image description here"></p>
-<p>��ֱ�׵����̽��ͣ�</p>
+<p>更直白的流程解释：</p>
 <p><img src="http://onilby45v.bkt.clouddn.com/b80007e.jpg" alt="enter image description here"></p>
-<p>��App�������̣�������������Ӧ�ã����������̱���Launcher���ڽ��̣�����ĳApp������Զ�̽��̣������ͽ��̱��Ǹ�App���ڽ��̡�����������ͨ��binder������Ϣ��system_server���̣�</p>
-<p>��system_server���̣�����Process.start()������ͨ��socket��zygote���̷��ʹ����½��̵�������</p>
-<p>��zygote���̣���ִ��ZygoteInit.main()��������runSelectLoop()ѭ�����ڣ����пͻ�������ʱ����ִ��ZygoteConnection.runOnce()�������پ����������ú�fork���µ�Ӧ�ý��̣�</p>
-<p>���½��̣�ִ��handleChildProc��������������ActivityThread.main()������</p>
-<p>####2.����Application</p>
-<p>���洴�����̺���ִ��ActivityThread.main()��������������attach()������</p>
-<p>�����̺�ָ����Application����������������ͨ���Ͻڵ�ActivityThread�����е���bindApplication()�������ɵġ��÷�������һ��BIND_APPLICATION����Ϣ����Ϣ������, ����ͨ��handleBindApplication()������������Ϣ. Ȼ������makeApplication()����������App��classes���ڴ��С�</p>
-<p>������������ͼ���£�</p>
+<p>①App发起进程：当从桌面启动应用，则发起进程便是Launcher所在进程；当从某App内启动远程进程，则发送进程便是该App所在进程。发起进程先通过binder发送消息给system_server进程；</p>
+<p>②system_server进程：调用Process.start()方法，通过socket向zygote进程发送创建新进程的请求；</p>
+<p>③zygote进程：在执行ZygoteInit.main()后便进入runSelectLoop()循环体内，当有客户端连接时便会执行ZygoteConnection.runOnce()方法，再经过层层调用后fork出新的应用进程；</p>
+<p>④新进程：执行handleChildProc方法，最后调用ActivityThread.main()方法。</p>
+<p>####2.绑定Application</p>
+<p>上面创建进程后，执行ActivityThread.main()方法，随后调用attach()方法。</p>
+<p>将进程和指定的Application绑定起来。这个是通过上节的ActivityThread对象中调用bindApplication()方法完成的。该方法发送一个BIND_APPLICATION的消息到消息队列中, 最终通过handleBindApplication()方法处理该消息. 然后调用makeApplication()方法来加载App的classes到内存中。</p>
+<p>方法调用流程图如下：</p>
 <p><img src="http://onilby45v.bkt.clouddn.com/1.jpg" alt="enter image description here"></p>
-<p>��ֱ�׵����̽��ͣ�</p>
+<p>更直白的流程解释：</p>
 <p><img src="http://onilby45v.bkt.clouddn.com/2.jpg" alt="enter image description here"></p>
-<p>������������AMS,ATP�����ʣ������н��ͣ�</p>
-<p>####3.��ʾActivity����</p>
-<p>����ǰ��������֮��, ϵͳ�Ѿ�ӵ���˸�application�Ľ��̡� �����ĵ���˳��������ͨ�Ĵ�һ���Ѿ����ڵĽ���������һ���½��̵�activity�ˡ�</p>
-<p>ʵ�ʵ��÷�����realStartActivity(), ��������application�̶߳����е�scheduleLaunchActivity()����һ��LAUNCH_ACTIVITY��Ϣ����Ϣ������, ͨ�� handleLaunchActivity()����������Ϣ���� handleLaunchActivity()ͨ��performLaunchActiivty()�����ص�Activity��onCreate()������onStart()������Ȼ��ͨ��handleResumeActivity()�������ص�Activity��onResume()������������ʾActivity���档</p>
+<p>（如果看不懂AMS,ATP等名词，后面有解释）</p>
+<p>####3.显示Activity界面</p>
+<p>经过前两个步骤之后, 系统已经拥有了该application的进程。 后面的调用顺序就是普通的从一个已经存在的进程中启动一个新进程的activity了。</p>
+<p>实际调用方法是realStartActivity(), 它会调用application线程对象中的scheduleLaunchActivity()发送一个LAUNCH_ACTIVITY消息到消息队列中, 通过 handleLaunchActivity()来处理该消息。在 handleLaunchActivity()通过performLaunchActiivty()方法回调Activity的onCreate()方法和onStart()方法，然后通过handleResumeActivity()方法，回调Activity的onResume()方法，最终显示Activity界面。</p>
 <p><img src="http://onilby45v.bkt.clouddn.com/1.jpg" alt="enter image description here"></p>
-<p>��ֱ�׵����̽��ͣ�</p>
+<p>更直白的流程解释：</p>
 <p><img src="http://onilby45v.bkt.clouddn.com/2.jpg" alt="enter image description here"></p>
-<h4 id="�g�Binderͨ��"><a href="#�g�Binderͨ��" class="headerlink" title="�ġ�Binderͨ��"></a>�ġ�Binderͨ��</h4><p><img src="http://onilby45v.bkt.clouddn.com/5.jpg" alt="enter image description here"></p>
-<p>����:</p>
+<h4 id="四、Binder通信"><a href="#四、Binder通信" class="headerlink" title="四、Binder通信"></a>四、Binder通信</h4><p><img src="http://onilby45v.bkt.clouddn.com/5.jpg" alt="enter image description here"></p>
+<p>简称:</p>
 <p>ATP: ApplicationThreadProxy</p>
 <p>AT: ApplicationThread</p>
 <p>AMP: ActivityManagerProxy</p>
 <p>AMS: ActivityManagerService</p>
-<p>ͼ��:</p>
-<p>��system_server�����е���startProcessLocked����,�÷�������ͨ��socket��ʽ,����Ҫ�����½��̵���Ϣ��֪Zygote����,�������ȴ�Socket�����´������̵�pid;</p>
-<p>��Zygote���̽��յ�system_server���͹�������Ϣ, ��ͨ��fork�ķ�������zygote�������̸��������µĽ��̣�����ActivityThread���ص���Դ���ص��½���app process,�������̿��������ڳ���activity������;</p>
-<p>�� ���½���app process��servicemanager��ѯsystem_server������binder������AMS, ��ȡ����Ӧ��Client��,Ҳ����AMP. ������һ��binder c/s��, ��ôapp process������ͨ��binder��������system_server��������,��attachApplication()</p>
-<p>��system_server���̽��յ���Ӧbinder������,�������ε���,����ATP��app process����binder����, ��bindApplication.<br>system_serverӵ��ATP/AMS, ÿһ���´����Ľ��̶�����һ����Ӧ��AT/AMP,�Ӷ����Կ����� �����໥ͨ��. �����ǽ��̴������̵�������̬����</p>
-<p>���ϴ��Ž�����һ��APP����������ҳ����ʾ���������̣���Ҫ�Ӻ��۽ǶȽ����������̣������ɽ���Դ�����⡣</p>
+<p>图解:</p>
+<p>①system_server进程中调用startProcessLocked方法,该方法最终通过socket方式,将需要创建新进程的消息告知Zygote进程,并阻塞等待Socket返回新创建进程的pid;</p>
+<p>②Zygote进程接收到system_server发送过来的消息, 则通过fork的方法，将zygote自身进程复制生成新的进程，并将ActivityThread相关的资源加载到新进程app process,这个进程可能是用于承载activity等组件;</p>
+<p>③ 在新进程app process向servicemanager查询system_server进程中binder服务端AMS, 获取相对应的Client端,也就是AMP. 有了这一对binder c/s对, 那么app process便可以通过binder向跨进程system_server发送请求,即attachApplication()</p>
+<p>④system_server进程接收到相应binder操作后,经过多次调用,利用ATP向app process发送binder请求, 即bindApplication.<br>system_server拥有ATP/AMS, 每一个新创建的进程都会有一个相应的AT/AMP,从而可以跨进程 进行相互通信. 这便是进程创建过程的完整生态链。</p>
+<p>以上大概介绍了一个APP从启动到主页面显示经历的流程，主要从宏观角度介绍了其过程，具体可结合源码理解。</p>
 
       
     </div>
@@ -592,7 +589,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#һ�����̸���"><span class="nav-number">1.</span> <span class="nav-text">һ�����̸���</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#�������̣�"><span class="nav-number">1.1.</span> <span class="nav-text">�������̣�</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#�������ۻ���"><span class="nav-number">2.</span> <span class="nav-text">�������ۻ���</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#������������"><span class="nav-number">3.</span> <span class="nav-text">������������</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#�g�Binderͨ��"><span class="nav-number">3.1.</span> <span class="nav-text">�ġ�Binderͨ��</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、流程概述"><span class="nav-number">1.</span> <span class="nav-text">一、流程概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#启动流程："><span class="nav-number">1.1.</span> <span class="nav-text">启动流程：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、理论基础"><span class="nav-number">2.</span> <span class="nav-text">二、理论基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、启动流程"><span class="nav-number">3.</span> <span class="nav-text">三、启动流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#四、Binder通信"><span class="nav-number">3.1.</span> <span class="nav-text">四、Binder通信</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

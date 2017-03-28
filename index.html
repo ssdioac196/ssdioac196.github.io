@@ -247,7 +247,7 @@
               
                 
                 <a class="post-title-link" href="/2017/03/28/一个APP从启动到主页面显示经历了哪些过程/" itemprop="url">
-                  һ��APP����������ҳ����ʾ��������Щ����
+                  一个APP从启动到主页面显示经历了哪些过程
                 </a>
               
             
@@ -309,18 +309,9 @@
       
         
           <blockquote>
-<p>������ͼ�Ĳ�ï����ʽ�򵥽���һ��APP����������ҳ����ʾ��������Щ���̣��Լ�ʵ�ֵ�ԭ���������ܾ���Դ�룬��������һ���������ܡ�</p>
+<p>本文以图文并茂的形式简单介绍一个APP从启动到主页面显示经历了哪些流程，以及实现的原理。不介绍具体源码，仅仅构建一个大体框架。</p>
 </blockquote>
-<h3 id="һ�����̸���"><a href="#һ�����̸���" class="headerlink" title="һ�����̸���"></a>һ�����̸���</h3><p><img src="http://onilby45v.bkt.clouddn.com/b80007e.jpg" alt="enter image description here"></p>
-<h4 id="�������̣�"><a href="#�������̣�" class="headerlink" title="�������̣�"></a>�������̣�</h4><p>�ٵ�������Appͼ�꣬Launcher���̲���Binder IPC��system_server���̷���startActivity������</p>
-<p>��system_server���̽��յ�����������zygote���̷��ʹ������̵�������</p>
-<p>��Zygote����fork���µ��ӽ��̣���App���̣�</p>
-<p>��App���̣�ͨ��Binder IPC��sytem_server���̷���attachApplication������</p>
-<p>��system_server�������յ������󣬽���һϵ��׼������������ͨ��binder IPC��App���̷���scheduleLaunchActivity������</p>
-<p>��App���̵�binder�̣߳�ApplicationThread�����յ���������ͨ��handler�����̷߳���LAUNCH_ACTIVITY��Ϣ��</p>
-<p>�����߳����յ�Message����ͨ���������ƴ���Ŀ��Activity�����ص�Activity.onCreate()�ȷ�����</p>
-<p>�ൽ�ˣ�App����ʽ��������ʼ����Activity�������ڣ�ִ����onCreate/onStart/onResume������UI��Ⱦ�����������Կ���App�������档</p>
-<p>������һЩ�в����򵥽�����һ��APP��������ҳ����ʾ�Ĺ��̣�������Щ�����е�һЩ���￴����Щ�£�ʲô��Launcher��ʲô��zygote��ʲô��applicationThread…..</p>
+<h3 id="一、流程概述"><a href="#一、流程概述" class="headerlink" title="一、流程概述"></a>一、流程概述</h3><p><img src="http://onilby45v.bkt.clouddn.com/b80007e.jpg" alt="enter image description here"></p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/03/28/一个APP从启动到主页面显示经历了哪些过程/#more" rel="contents">
               阅读全文 &raquo;
@@ -1320,8 +1311,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/17/WebView拦截/" itemprop="url">
-                  android webview 拦截请求
+                <a class="post-title-link" href="/2016/10/17/android通用框架之mvp/" itemprop="url">
+                  android通用框架之mvp
                 </a>
               
             
@@ -1382,9 +1373,10 @@
 
       
         
-          <h1 id="android-WebView拦截请求详解"><a href="#android-WebView拦截请求详解" class="headerlink" title="android WebView拦截请求详解"></a>android WebView拦截请求详解</h1><h3 id="1、WebView基本用法"><a href="#1、WebView基本用法" class="headerlink" title="1、WebView基本用法"></a>1、WebView基本用法</h3><p>WebView的基本用法相信大多数<strong>[Android][1]</strong>开发者都是会使用的，最简单的就是调用个loadUrl方法，但是记得要在清单文件中添加网络权限。我也简单了写了一个加载百度的，如下图<br>
+          <h1 id="MVP模式"><a href="#MVP模式" class="headerlink" title="MVP模式"></a>MVP模式</h1><h3 id="MVP模式简介"><a href="#MVP模式简介" class="headerlink" title="MVP模式简介"></a>MVP模式简介</h3><blockquote>
+<p>MVP 是从经典的模式MVC演变而来，它们的基本思想有相通的地方：Controller/Presenter负责逻辑的处理，Model提供数据，View负责显示。<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/17/WebView拦截/#more" rel="contents">
+            <a class="btn" href="/2016/10/17/android通用框架之mvp/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
