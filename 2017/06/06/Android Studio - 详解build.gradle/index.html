@@ -1,0 +1,679 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="android studio," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="Android Studio - 详解build.gradleAS中APP所有的配置尽在一个build.gradle文件中，打包的时候也是解析build.gralde文件来打包的，所以搞懂build.gradle文件是至关重要的，结构如下所示">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android studio  详解build.gradle">
+<meta property="og:url" content="http://yoursite.com/2017/06/06/Android Studio - 详解build.gradle/index.html">
+<meta property="og:site_name" content="Android心得小记">
+<meta property="og:description" content="Android Studio - 详解build.gradleAS中APP所有的配置尽在一个build.gradle文件中，打包的时候也是解析build.gralde文件来打包的，所以搞懂build.gradle文件是至关重要的，结构如下所示">
+<meta property="og:image" content="http://img.blog.csdn.net/20150915091347457?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20150915091453422?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:updated_time" content="2017-06-06T10:42:31.731Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android studio  详解build.gradle">
+<meta name="twitter:description" content="Android Studio - 详解build.gradleAS中APP所有的配置尽在一个build.gradle文件中，打包的时候也是解析build.gralde文件来打包的，所以搞懂build.gradle文件是至关重要的，结构如下所示">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20150915091347457?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/06/06/Android Studio - 详解build.gradle/"/>
+
+
+  <title> Android studio  详解build.gradle | Android心得小记 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Android心得小记</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">工作多年 没有做记录 真的白玩 赶紧开始记录自己的点滴</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android studio  详解build.gradle
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-06T17:44:48+08:00" content="2017-06-06">
+              2017-06-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/android/" itemprop="url" rel="index">
+                    <span itemprop="name">android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Android-Studio-详解build-gradle"><a href="#Android-Studio-详解build-gradle" class="headerlink" title="Android Studio - 详解build.gradle"></a>Android Studio - 详解build.gradle</h3><h4 id="AS中APP所有的配置尽在一个build-gradle文件中，打包的时候也是解析build-gralde文件来打包的，所以搞懂build-gradle文件是至关重要的，结构如下所示"><a href="#AS中APP所有的配置尽在一个build-gradle文件中，打包的时候也是解析build-gralde文件来打包的，所以搞懂build-gradle文件是至关重要的，结构如下所示" class="headerlink" title="AS中APP所有的配置尽在一个build.gradle文件中，打包的时候也是解析build.gralde文件来打包的，所以搞懂build.gradle文件是至关重要的，结构如下所示"></a>AS中APP所有的配置尽在一个build.gradle文件中，打包的时候也是解析build.gralde文件来打包的，所以搞懂build.gradle文件是至关重要的，结构如下所示</h4><a id="more"></a>
+<p><img src="http://img.blog.csdn.net/20150915091347457?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="enter image description here"></p>
+<p>1、apply plugin用来指定用的是哪个插件，取值有：</p>
+<ul>
+<li><strong>com.android.application：Android APP插件（打包得到的是.apk文件）</strong></li>
+<li><strong>com.android.library：Android库插件（打包得到的是.aar文件）</strong></li>
+</ul>
+<p>2、android用来指定Android打包插件的相关属性，其包含如下节点</p>
+<ul>
+<li><strong>compileSdkVersion(apiLevel)：设置编译时用的Android版本</strong></li>
+<li><strong>buildToolsVersion(buildToolsVersionName)：设置编译时使用的构建工具的版本</strong></li>
+<li><p><strong>defaultConfig：设置一些默认属性，其可用属性是buildTypes和ProductFlavors之和</strong></p>
+<blockquote>
+<p>sourceSets：配置相关源文件的位置，当你的项目的目录结构跟默认的有区别但又不想改的时候sourceSets就派上用场了<br>1.aidl     设置aidi的目录<br>2.assets     设置assets资源目录<br>3.compileConfigurationName     The name of the compile configuration for this source set.<br>4.java     Java源代码目录<br>5.jni     JNI代码目录<br>6.jniLibs     已编译好的JNI库目录<br>7.manifest     指定清单文件<br>8.name     The name of this source set.<br>9.packageConfigurationName     The name of the runtime configuration for this source set.<br>10.providedConfigurationName     The name of the compiled-only configuration for this source set.<br>11.renderscript     Renderscript源代码目录<br>12.res     资源目录<br>13.setRoot(path)     根目录</p>
+</blockquote>
+</li>
+<li><p><strong>signingConfigs：配置签名信息</strong></p>
+<blockquote>
+<p>1.keyAlias     签名的别名<br>2.keyPassword     密码<br>3.storeFile     签名文件的路径<br>4.storePassword     签名密码<br>5.storeType     类型</p>
+</blockquote>
+</li>
+<li><p><strong>buildTypes：配置构建类型，可打出不同类型的包，默认有debug和release两种，你还可以在增加N种</strong></p>
+<blockquote>
+<p>1.applicationIdSuffix     修改applicationId，在默认applicationId的基础上加后缀。在buildType中修改applicationId时只能加后缀，不能完全修改<br>2.jniDebuggable     设置生成的APK是否支持调试本地代码<br>3.minifyEnabled     设置是否执行代码混淆<br>4.multiDexEnabled     Whether Multi-Dex is enabled for this variant.<br>5.renderscriptDebuggable     设置生成的APK是否支持调试RenderScript代码<br>6.renderscriptOptimLevel     设置RenderScript优化级别<br>7.signingConfig     设置签名信息<br>8.versionNameSuffix     修改版本名称，在默认版本名称的基础上加后缀。在buildType中修改版本名称时只能加后缀，不能完全修改<br>9.zipAlignEnabled     设置是否对APK包执行ZIP对齐优化，减小zip体积，增加运行效率（类比于ssd的4k对齐）<br>10.proguardFile(proguardFile)     添加一个混淆文件<br>11.proguardFiles(proguardFileArray)     添加多个混淆文件<br>12.setProguardFiles(proguardFileIterable)     设置多个混淆文件</p>
+</blockquote>
+</li>
+<li><p><strong>productFlavors：配置不同风格的APP，在buildTypes的基础上还可以让每一个类型的APP拥有不同的风格，所以最终打出的APK的数量就是buildTypes乘以productFlavors</strong></p>
+<blockquote>
+<p>1.applicationId     设置应用ID<br>2.multiDexEnabled     Whether Multi-Dex is enabled for this variant.signingConfig     Signing config used by this product flavor.<br>3.testApplicationId     设置测试时的应用ID<br>4.testFunctionalTest     See instrumentation.<br>5.testHandleProfiling     See instrumentation.<br>6.testInstrumentationRunner     Test instrumentation runner class name.<br>7.versionCode     设置版本号<br>8.versionName     设置版本名称<br>9.minSdkVersion(int minSdkVersion)     设置兼容的最小SDK版本<br>10.minSdkVersion(String minSdkVersion)     设置兼容的最小版本<br>11.proguardFile(proguardFile)     添加一个混淆文件<br>12.proguardFiles(proguardFileArray)     添加多个混淆文件<br>13.setProguardFiles(proguardFileIterable)     设置多个混淆文件<br>14.targetSdkVersion(int targetSdkVersion)     设置目标SDK版本<br>15.targetSdkVersion(String targetSdkVersion)     设置目标SDK版本</p>
+</blockquote>
+</li>
+<li><p><strong>testOptions：设置测试相关属性</strong></p>
+<blockquote>
+<p>1.reportDir     设置测试报告的目录<br>2.resultsDir     设置测试结果的目录</p>
+</blockquote>
+</li>
+<li><p><strong>aaptOptions：设置AAPT的属性</strong></p>
+<blockquote>
+<p>1.failOnMissingConfigEntry     Forces aapt to return an error if it fails to find an entry for a configuration.<br>2.ignoreAssets     Pattern describing assets to be ignore.<br>3.noCompress     Extensions of files that will not be stored compressed in the APK.<br>4.useNewCruncher     Whether to use the new cruncher.</p>
+</blockquote>
+</li>
+<li><p><strong>lintOptions：设置Lint的属性</strong></p>
+<blockquote>
+<p>1.abortOnError     设置是否在lint发生错误时终止构建<br>2.absolutePaths     Whether lint should display full paths in the error output. By default the paths are relative to the path lint was &gt;invoked from.<br>3.check     The exact set of issues to check, or null to run the issues that are enabled by default plus any issues enabled via<br>4.LintOptions.getEnable() and without issues disabled via LintOptions.getDisable(). If non-null, callers are allowed to modify this collection.<br>5.checkAllWarnings     Returns whether lint should check all warnings, including those off by default.<br>6.checkReleaseBuilds     Returns whether lint should check for fatal errors during release builds. Default is true. If issues with severity “fatal” are found, the release build is aborted.<br>7.disable     The set of issue id’s to suppress. Callers are allowed to modify this collection.<br>8.enable     The set of issue id’s to enable. Callers are allowed to modify this collection. To enable a given issue, add the issue ID to the returned set.<br>9.explainIssues     Returns whether lint should include explanations for issue errors. (Note that HTML and XML reports &gt;10.intentionally do this unconditionally, ignoring this setting.)<br>11.htmlOutput     The optional path to where an HTML report should be written.<br>12.htmlReport     Whether we should write an HTML report. Default true. The location can be controlled by LintOptions.getHtmlOutput().<br>13.ignoreWarnings     Returns whether lint will only check for errors (ignoring warnings).<br>14.lintConfig     The default configuration file to use as a fallback.<br>15.noLines     Whether lint should include the source lines in the output where errors occurred (true by default).<br>16.quiet     Returns whether lint should be quiet (for example, not write informational messages such as paths to report files written).<br>17.severityOverrides     An optional map of severity overrides. The map maps from issue id’s to the corresponding severity to use, which must be “fatal”, “error”, “warning”, or “ignore”.<br>18.showAll     Returns whether lint should include all output (e.g. include all alternate locations, not truncating long messages, etc.)<br>19.textOutput     The optional path to where a text report should be written. The special value “stdout” can be used to point to standard output.<br>20.textReport     Whether we should write an text report. Default false. The location can be controlled by LintOptions.getTextOutput().<br>21.warningsAsErrors     Returns whether lint should treat all warnings as errors.<br>22.xmlOutput     The optional path to where an XML report should be written.<br>23.xmlReport     Whether we should write an XML report. Default true. The location can be controlled by LintOptions.getXmlOutput().<br>24.check(id)     Adds the id to the set of issues to check.<br>25.check(ids)     Adds the ids to the set of issues to check.<br>26.disable(id)     Adds the id to the set of issues to enable.<br>27.disable(ids)     Adds the ids to the set of issues to enable.<br>28.enable(id)     Adds the id to the set of issues to enable.<br>29.enable(ids)     Adds the ids to the set of issues to enable.<br>30.error(id)     Adds a severity override for the given issues.<br>31.error(ids)     Adds a severity override for the given issues.<br>32.fatal(id)     Adds a severity override for the given issues.<br>33.fatal(ids)     Adds a severity override for the given issues.<br>34.ignore(id)     Adds a severity override for the given issues.<br>35.ignore(ids)     Adds a severity override for the given issues.<br>36.warning(id)     Adds a severity override for the given issues.<br>37.warning(ids)     Adds a severity override for the given issues.</p>
+</blockquote>
+</li>
+<li><p><strong>dexOptions</strong></p>
+<blockquote>
+<p>1.incremental     Whether to enable the incremental mode for dx. This has many limitations and may not work. Use carefully.<br>2.javaMaxHeapSize     Sets the -JXmx* value when calling dx. Format should follow the 1024M pattern.<br>3.jumboMode     Enable jumbo mode in dx (–force-jumbo).<br>4.preDexLibraries     Whether to pre-dex libraries. This can improve incremental builds, but clean builds may be slower.</p>
+</blockquote>
+</li>
+<li><p><strong>compileOptions：设置编译的相关属性</strong></p>
+<blockquote>
+<p>1.sourceCompatibility     Language level of the source code.<br>2.targetCompatibility     Version of the generated Java bytecode.</p>
+</blockquote>
+</li>
+<li><p><strong>packagingOptions：设置APK包的相关属性</strong></p>
+<blockquote>
+<p>1.excludes     The list of excluded paths.<br>2.pickFirsts     The list of paths where the first occurrence is packaged in the APK.<br>3.exclude(path)     Adds an excluded paths.<br>4.pickFirst(path)     Adds a firstPick path. First pick paths do get packaged in the APK, but only the first occurrence gets packaged.</p>
+</blockquote>
+</li>
+<li><p><strong>jacoco：设置JaCoCo的相关属性</strong></p>
+<blockquote>
+<p>1.version     设置JaCoCo的版本</p>
+</blockquote>
+</li>
+<li><p><strong>splits：设置如何拆分APK（比如你想拆分成arm版和x86版）</strong></p>
+<blockquote>
+<p>1.abi     ABI settings.<br>2.abiFilters     The list of ABI filters used for multi-apk.<br>3.density     Density settings.<br>4.densityFilters     The list of Density filters used for multi-apk.</p>
+</blockquote>
+</li>
+</ul>
+<p>3.dependencies：配置依赖</p>
+<p>参考：<a href="http://blog.csdn.net/xx326664162/article/details/48175069" target="_blank" rel="external">http://blog.csdn.net/xx326664162/article/details/48175069</a><br>参考文档：<br>最权威的官方打包指南（需要翻墙）<a href="http://tools.android.com/tech-docs/new-build-system" target="_blank" rel="external">http://tools.android.com/tech-docs/new-build-system</a><br>Android打包插件API（在线版）<a href="http://apdr.qiniudn.com/index.html" target="_blank" rel="external">http://apdr.qiniudn.com/index.html</a> </p>
+<p>如果你对于手动配置build.gradle文件还不太熟练，那么可以使用AS提供的图形界面来配置，按下CMD+;即可打开配置页面</p>
+<p><img src="http://img.blog.csdn.net/20150915091453422?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="enter image description here"></p>
+<p>新特性：<br>     Google在用Gradle最为Android打包工具的时候引入了applicationId的概念，这是为了打多个不同ID的APK包准备的。<br>applicationId可以和清单文件中的packageName不一样，我们在代码中通过getPackageName()方法拿到的是applicationId，而清单文件中配置的packageName则仅作为R.java和BuildConfig.java的存放目录。<br>这样一来通过Class.forName(getPackageName()+”.R”)来获取R类的方式就行不通了，一定要注意。<br>applicationId和packageName的区别参考：<a href="http://blog.csdn.net/xx326664162/article/details/48468219" target="_blank" rel="external">http://blog.csdn.net/xx326664162/article/details/48468219</a><br>打包<br>build.gradle文件配置完成后，打开终端，进入项目目录下，执行gradle build即可打包，打包结束后在相应module的build/outputs/apk/目录下可以看到.apk文件</p>
+<p>如果你是在项目目录下执行的打包命令，那么会对项目中所有的module都打包，进入某个module目录下执行打包命令就只对当前module打包，每个module打包生成的APK都才存放在mudule的build/outputs/apk目录下</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/android-studio/" rel="tag">#android studio</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/31/Android View 总结/" rel="next" title="Android View 总结">
+                <i class="fa fa-chevron-left"></i> Android View 总结
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Pandl" />
+          <p class="site-author-name" itemprop="name">Pandl</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Android-Studio-详解build-gradle"><span class="nav-number">1.</span> <span class="nav-text">Android Studio - 详解build.gradle</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AS中APP所有的配置尽在一个build-gradle文件中，打包的时候也是解析build-gralde文件来打包的，所以搞懂build-gradle文件是至关重要的，结构如下所示"><span class="nav-number">1.1.</span> <span class="nav-text">AS中APP所有的配置尽在一个build.gradle文件中，打包的时候也是解析build.gralde文件来打包的，所以搞懂build.gradle文件是至关重要的，结构如下所示</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Pandl</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
